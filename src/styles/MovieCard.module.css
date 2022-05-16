@@ -1,0 +1,8 @@
+.image_overlay:hover {
+    opacity: 0.5;
+    z-index: 1;
+}
+
+img {
+    z-index: -1;
+}

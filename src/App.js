@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Trending from './components/Trending';
+
+import movieService from './services/movies';
+import styles from './styles/App.module.css';
+
+const App = () => {
+    const [trending, setTrending] = useState([]);
+
+    useEffect(() => {
+        const fetchTrendingMovies = async () => {
+            const movies = await movieService.getTrending();
+            setTrending(movies.results);
+        };
+        fetchTrendingMovies();
+    }, []);
+
+    console.log(trending.results);
+    return (
+        <>
+            <Router>
+                <div className={styles.navbar}>
+                    <Link to="/" className={styles.link}>
+                        Sign In
+                    </Link>
+                    <Link
+                        to="/users"
+                        className={styles.link + ' ' + styles.signUpButton}
+                    >
+                        Sign Up
+                    </Link>
+                </div>
+            </Router>
+
+            <Trending trending={trending} />
+        </>
+    );
+};
 
 export default App;
