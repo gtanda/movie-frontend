@@ -11,13 +11,14 @@ const MovieCard = ({ movieData }) => {
     const onLeave = () => (movieData.isHovering = false);
 
     return (
-        <div className={styles.image_overlay}>
-            <p>{movieData.title}</p>
+        <div className={styles.size}>
+            <p>{movieData.title ? movieData.title : movieData.name}</p>
             <img
                 alt="Movie Poster"
                 src={`https://image.tmdb.org/t/p/w185/${movieData.poster_path}`}
                 onMouseOver={onHover}
                 onMouseLeave={onLeave}
+                className={styles.image_overlay}
             />
         </div>
     );
