@@ -5,10 +5,6 @@
     border: 0.4vh solid #5f5e6e;
 }
 
-.imageStyle {
-    position: relative;
-}
-
 .blanketStyle {
     background-color: black;
     opacity: 0.9;
@@ -31,7 +27,8 @@
 
 .ratingAndReviewStyle {
     position: absolute;
-    bottom: 0.4vh;
+    font-size: 1.4rem;
+    bottom: 1.2vh;
     left: 0.2vh;
 }
 
@@ -47,4 +44,14 @@
 .homeMovies {
     text-align: center;
     margin: auto;
+}
+
+.addToList {
+    margin: 0.4vh;
+}
+
+.addToList:hover {
+    border-bottom: 0.2rem solid white;
+    padding-right: 0.6rem;
+    cursor: pointer;
 }

@@ -10,7 +10,6 @@ const MovieCard = ({ movieData, onHover, onLeave }) => {
             <img
                 alt="Movie Poster"
                 src={`https://image.tmdb.org/t/p/w300/${movieData.poster_path}`}
-                className={styles.imageStyle}
             />
             {movieData.isHovering ? (
                 <div className={styles.blanketStyle}>
@@ -26,9 +25,7 @@ const MovieCard = ({ movieData, onHover, onLeave }) => {
                                 ? 'No Reviews Yet'
                                 : `Rating: ${movieData.vote_average} based on ${movieData.vote_count} votes`}
                         </h6>
-                        <button className="btn btn-outline-danger btn-sm addToListStyle">
-                            Add To List
-                        </button>
+                        <a className={styles.addToList}>Add To List</a>
                     </div>
                 </div>
             ) : null}

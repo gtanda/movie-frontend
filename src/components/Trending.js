@@ -37,7 +37,7 @@ const Trending = () => {
 
     return (
         <>
-            <h3 className={styles.title}>Trending Movies</h3>
+            <h2 className={styles.title}>Trending Movies</h2>
             <div>
                 {trendingMovies
                     ? trendingMovies.map((movie) => {

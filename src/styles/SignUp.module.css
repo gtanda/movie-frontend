@@ -1,0 +1,45 @@
+.inputDivs {
+    margin: 1vh;
+}
+
+.inputBlocks {
+    background-color: #050314;
+    padding: 0.4rem;
+    margin: 0.4rem 0;
+    border: 0.1rem solid #00c6c4;
+    border-radius: 0.2rem;
+    color: white;
+    width: 100%;
+}
+
+.formStyle {
+    width: 25%;
+    position: absolute;
+    right: 2vw;
+    height: 100%;
+}
+
+.leftSide {
+    background-color: red;
+    width: 72%;
+    position: absolute;
+    left: 0px;
+    height: 100%;
+}
+
+.submitStyle {
+    /* remove default behavior */
+    appearance: none;
+    -webkit-appearance: none;
+
+    /* usual styles */
+    padding: 0.4rem;
+    margin-left: 0.4rem;
+    border: none;
+    background-color: #00c6c4;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.2rem;
+    width: 100%;
+    cursor: pointer;
+}

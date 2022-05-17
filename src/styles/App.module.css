@@ -33,3 +33,8 @@ a:active {
     border-bottom: 0.2rem solid white;
     padding-bottom: 0.2rem;
 }
+
+.iconStyle {
+    width: 5vw;
+    display: inline-block;
+}
