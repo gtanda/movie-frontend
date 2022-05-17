@@ -1,6 +1,6 @@
 .link {
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     text-decoration: none;
     color: white;
     float: right;
@@ -26,11 +26,10 @@ a:active {
 }
 
 .signUpButton {
-    border: 0.1rem solid white;
-    border-radius: 5%;
+    display: block;
 }
 
 .signUpButton:hover {
-    background-color: white;
-    color: #050314;
+    border-bottom: 0.2rem solid white;
+    padding-bottom: 0.2rem;
 }

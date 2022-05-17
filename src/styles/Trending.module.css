@@ -1,8 +1,5 @@
-.wrapper {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    grid-auto-rows: minmax(1fr, 1fr);
-    padding: 2rem;
-    background-color: #050314;
+.title {
+    display: inline-block;
+    border-bottom: 0.2rem solid white;
+    padding-right: 1rem;
 }

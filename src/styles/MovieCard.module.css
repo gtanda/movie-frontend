@@ -1,8 +1,50 @@
-.image_overlay:hover {
-    opacity: 0.5;
-    z-index: 1;
+.mainDivStyle {
+    position: relative;
+    margin: 3vh 2vh;
+    display: inline-block;
+    border: 0.4vh solid #5f5e6e;
 }
 
-img {
-    z-index: -1;
+.imageStyle {
+    position: relative;
+}
+
+.blanketStyle {
+    background-color: black;
+    opacity: 0.9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+.imageOverViewStyle {
+    margin: 0.2vh 0.5vh;
+    color: white;
+    overflow: auto;
+    z-index: 1;
+    height: 60%;
+    width: 95%;
+}
+
+.ratingAndReviewStyle {
+    position: absolute;
+    bottom: 0.4vh;
+    left: 0.2vh;
+}
+
+.hoverStyle {
+    z-index: 1;
+    color: white;
+    margin: 1vh 0.2vh;
+    display: block;
+    width: 80%;
+    word-wrap: break-word;
+}
+
+.homeMovies {
+    text-align: center;
+    margin: auto;
 }

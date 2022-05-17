@@ -1,6 +1,7 @@
 @import-normalize;
 
 body {
-    font-family: Sans-Serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
+    background-color: #050314;
 }
