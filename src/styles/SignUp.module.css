@@ -19,11 +19,27 @@
     height: 100%;
 }
 
-.leftSide {
-    background-color: red;
-    width: 72%;
+.leftSide1 {
+    background: #050314;
+    width: 25%;
     position: absolute;
-    left: 0px;
+    left: 0;
+    height: 100%;
+}
+
+.leftSide2 {
+    background: #050314;
+    width: 25%;
+    position: absolute;
+    left: 23%;
+    height: 100%;
+}
+
+.leftSide3 {
+    background: #050314;
+    width: 25%;
+    left: 46%;
+    position: absolute;
     height: 100%;
 }
 

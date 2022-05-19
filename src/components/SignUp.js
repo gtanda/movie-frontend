@@ -1,5 +1,5 @@
 import styles from '../styles/SignUp.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GiPopcorn } from 'react-icons/gi';
 
 const SignUp = () => {
@@ -16,9 +16,32 @@ const SignUp = () => {
         console.log(confirmPassword);
     };
 
+    const backgroundImages = new Set()
+
+    const getImagesFromStorage = () => {
+        for (let i =0; i < 3; i++) {
+            if (window.localStorage.getItem(`poster_${i}`)) {
+                backgroundImages.add(window.localStorage.getItem(`poster_${i}`))
+            }
+        }
+    }
+
+    useEffect(() => {
+        getImagesFromStorage()
+    }, [])
+
+
+
+    getImagesFromStorage()
+
     return (
         <div>
-            <div className={styles.leftSide}></div>
+            <div className={styles.leftSide1} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780${Array.from(backgroundImages)[0]})`, backgroundRepeat: 'no-repeat'}}>
+            </div>
+            <div className={styles.leftSide2} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780${Array.from(backgroundImages)[1]})`, backgroundRepeat: 'no-repeat'}}>
+            </div>
+            <div className={styles.leftSide3} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780${Array.from(backgroundImages)[2]})`, backgroundRepeat: 'no-repeat'}}>
+            </div>
             <div className={styles.formStyle}>
                 <h3>
                     Sign Up <GiPopcorn />
@@ -27,7 +50,7 @@ const SignUp = () => {
                     <div className={styles.inputDivs}>
                         <input
                             placeholder="username"
-                            email={username}
+                            value={username}
                             type="text"
                             onChange={(e) => setUsername(e.target.value)}
                             className={styles.inputBlocks}

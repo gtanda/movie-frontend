@@ -13,6 +13,12 @@ const Trending = () => {
             setTrendingMovies(movies.results);
         };
         fetchTrendingMovies();
+
+        if (trendingMovies.length > 0) {
+            for (let i =0; i < 3; i++) {
+                window.localStorage.setItem(`poster_${i}`, trendingMovies[i].poster_path)
+            }
+        }
     }, []);
 
     const onHover = (id) => {
@@ -34,6 +40,8 @@ const Trending = () => {
         );
         setTrendingMovies(movies);
     };
+
+    console.log(trendingMovies)
 
     return (
         <>

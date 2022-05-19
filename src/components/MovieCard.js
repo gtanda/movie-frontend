@@ -9,7 +9,7 @@ const MovieCard = ({ movieData, onHover, onLeave }) => {
         >
             <img
                 alt="Movie Poster"
-                src={`https://image.tmdb.org/t/p/w300/${movieData.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w342/${movieData.poster_path}`}
             />
             {movieData.isHovering ? (
                 <div className={styles.blanketStyle}>
