@@ -1,6 +1,7 @@
 import styles from '../styles/SignUp.module.css';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { GiPopcorn } from 'react-icons/gi';
+import userService from '../services/users';
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
@@ -8,12 +9,14 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleSignUp = (e) => {
+    const handleSignUp = async (e) => {
         e.preventDefault();
-        console.log(username);
-        console.log(email);
-        console.log(password);
-        console.log(confirmPassword);
+        const registerUser = await userService.signUp(username, email, password, confirmPassword)
+        console.log('reg user', registerUser)
+        setUsername('')
+        setEmail('')
+        setPassword('')
+        setConfirmPassword('')
     };
 
     const backgroundImages = new Set()
@@ -25,14 +28,8 @@ const SignUp = () => {
             }
         }
     }
-
-    useEffect(() => {
-        getImagesFromStorage()
-    }, [])
-
-
-
     getImagesFromStorage()
+
 
     return (
         <div>
