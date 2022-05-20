@@ -41,8 +41,6 @@ const Trending = () => {
         setTrendingMovies(movies);
     };
 
-    console.log(trendingMovies)
-
     return (
         <>
             <h2 className={styles.title}>Trending Movies</h2>
