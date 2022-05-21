@@ -1,5 +1,6 @@
 import styles from '../styles/SignUp.module.css';
 import { useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { GiPopcorn } from 'react-icons/gi';
 import userService from '../services/users';
 
@@ -9,10 +10,14 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const navigate = useNavigate()
+
     const handleSignUp = async (e) => {
         e.preventDefault();
-        const registerUser = await userService.signUp(username, email, password, confirmPassword)
-        console.log('reg user', registerUser)
+        const registeredUser = await userService.signUp(username, email, password, confirmPassword)
+        if (registeredUser) {
+            navigate('/signIn')
+        }
         setUsername('')
         setEmail('')
         setPassword('')
