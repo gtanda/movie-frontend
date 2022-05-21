@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import loginService from '../services/login';
 import styles from '../styles/SignIn.module.css'
 
@@ -7,10 +8,14 @@ const SignIn = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    const navigate = useNavigate()
+
     const handleSignIn = async (e) => {
         e.preventDefault()
-        const status = await loginService.login({username, password})
-        console.log('login', status)
+        const login = await loginService.login({username, password})
+        if (login.isAuth) {
+            navigate(`/profile/${username}`)
+        }
         setUsername('')
         setPassword('')
     }

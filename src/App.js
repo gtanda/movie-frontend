@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import SignUp from './components/SignUp';
 import SignIn from "./components/SignIn";
 import Home from './components/Home';
+import UnknownEndpoint from "./components/UnknownEndpoint";
+import Profile from "./components/Profile";
 import styles from './styles/App.module.css';
 
 const App = () => {
@@ -41,6 +43,8 @@ const App = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/signUp" element={<SignUp />} />
                     <Route path="/signIn" element={<SignIn />} />
+                    <Route path="/profile/:username" element={<Profile />} />
+                    <Route path="*" element={<UnknownEndpoint />} />
                 </Routes>
             </Router>
         </>
