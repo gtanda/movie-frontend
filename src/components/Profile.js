@@ -1,6 +1,7 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from 'react';
 import profileService from '../services/profile';
+import sessionService from '../services/session':
 import {useNavigate} from "react-router-dom";
 
 const Profile = () => {
@@ -12,11 +13,11 @@ const Profile = () => {
 
     useEffect(() => {
         const getInfo = async () => {
-            const userInfo = await profileService.getProfileInfo(id)
+            const userInfo = await profileService.getProfileInfo()
+            console.log('userinfo', userInfo)
             if (userInfo.error) {
                 navigate('/login')
             }
-            console.log('userinfo', userInfo)
             setUsername(userInfo.username)
             setEmail(userInfo.email)
         }
@@ -27,6 +28,9 @@ const Profile = () => {
     return (
         <>
             {username ? <p>Welcome {username}!</p> : <p>User ID: {id}</p>}
+            <form>
+                <button type={"submit"} >Logout</button>
+            </form>
         </>
     )
 }

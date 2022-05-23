@@ -1,13 +1,31 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
+import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import {useEffect, useState} from 'react';
 import SignUp from './components/SignUp';
 import SignIn from "./components/SignIn";
 import Home from './components/Home';
 import UnknownEndpoint from "./components/UnknownEndpoint";
 import Profile from "./components/Profile";
+import sessionService from './services/session';
 import styles from './styles/App.module.css';
 
 const App = () => {
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        const isUserLoggedIn = async () => {
+            const userCheck = await sessionService.isUserLoggedIn()
+            if (userCheck.user) {
+                const {username, userId, email} = userCheck.user
+                setUser({username: username, id: userId, email: email, loggedIn: userCheck.loggedIn})
+            } else {
+                setUser({loggedIn: false})
+            }
+        }
+        isUserLoggedIn().catch(err => console.error('error', err))
+    }, [])
+
+    console.log('user state', user)
+
     return (
         <>
             <Router>
@@ -17,20 +35,23 @@ const App = () => {
                         alt="TMDB Icon"
                         className={styles.iconStyle}
                     />
-
-                    <Link
+                    {!user.loggedIn && <Link
                         to="/signUp"
-                        className={styles.link + ' ' + styles.signUpButton}
-                    >
+                        className={styles.link + ' ' + styles.signUpButton}>
                         Sign Up
-                    </Link>
+                    </Link>}
 
-                    <Link
+                    {!user.loggedIn && <Link
                         to="/signIn"
-                        className={styles.link + ' ' + styles.signUpButton}
-                    >
+                        className={styles.link + ' ' + styles.signUpButton}>
                         Sign In
-                    </Link>
+                    </Link>}
+                    {user && <Link
+                        to={'/profile'}
+                        className={styles.link + ' ' + styles.signUpButton}>
+                        Profile
+                    </Link>}
+
 
                     <Link
                         to="/"
@@ -41,11 +62,11 @@ const App = () => {
                 </nav>
 
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/signUp" element={<SignUp />} />
-                    <Route path="/signIn" element={<SignIn />} />
-                    <Route path="/profile/:id" element={<Profile />} />
-                    <Route path="*" element={<UnknownEndpoint />} />
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/signUp" element={<SignUp/>}/>
+                    <Route path="/signIn" element={<SignIn/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
+                    <Route path="*" element={<UnknownEndpoint/>}/>
                 </Routes>
             </Router>
         </>
