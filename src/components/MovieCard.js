@@ -1,6 +1,6 @@
 import styles from '../styles/MovieCard.module.css';
 
-const MovieCard = ({ movieData, onHover, onLeave }) => {
+const MovieCard = ({ trendingData, onHover, onLeave }) => {
     return (
         <div
             className={styles.mainDivStyle}
@@ -9,23 +9,23 @@ const MovieCard = ({ movieData, onHover, onLeave }) => {
         >
             <img
                 alt="Movie Poster"
-                src={`https://image.tmdb.org/t/p/w342/${movieData.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w342/${trendingData.poster_path}`}
             />
-            {movieData.isHovering ? (
+            {trendingData.isHovering ? (
                 <div className={styles.blanketStyle}>
                     <h4 className={styles.hoverStyle}>
-                        {movieData.title ? movieData.title : movieData.name}
+                        {trendingData.title ? trendingData.title : trendingData.name}
                     </h4>
                     <p className={styles.imageOverViewStyle}>
-                        {movieData.overview}
+                        {trendingData.overview}
                     </p>
                     <div className={styles.ratingAndReviewStyle}>
                         <h6 className={styles.hoverStyle}>
-                            {movieData.userReviews === 0
+                            {trendingData.userReviews === 0
                                 ? 'No Reviews Yet'
-                                : `Rating: ${movieData.vote_average} based on ${movieData.vote_count} votes`}
+                                : `Rating: ${trendingData.vote_average} based on ${trendingData.vote_count} votes`}
                         </h6>
-                        <a className={styles.addToList}>Add To List</a>
+                        <a className={styles.addToList}>Add To Watch List</a>
                     </div>
                 </div>
             ) : null}

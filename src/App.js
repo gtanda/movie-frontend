@@ -17,6 +17,7 @@ const App = () => {
                         alt="TMDB Icon"
                         className={styles.iconStyle}
                     />
+
                     <Link
                         to="/signUp"
                         className={styles.link + ' ' + styles.signUpButton}
@@ -43,7 +44,7 @@ const App = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/signUp" element={<SignUp />} />
                     <Route path="/signIn" element={<SignIn />} />
-                    <Route path="/profile/:username" element={<Profile />} />
+                    <Route path="/profile/:id" element={<Profile />} />
                     <Route path="*" element={<UnknownEndpoint />} />
                 </Routes>
             </Router>

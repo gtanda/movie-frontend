@@ -28,8 +28,8 @@ const SignUp = () => {
 
     const getImagesFromStorage = () => {
         for (let i =0; i < 3; i++) {
-            if (window.localStorage.getItem(`poster_${i}`)) {
-                backgroundImages.add(window.localStorage.getItem(`poster_${i}`))
+            if (window.localStorage.getItem(`movie_poster_${i}`)) {
+                backgroundImages.add(window.localStorage.getItem(`movie_poster_${i}`))
             }
         }
     }

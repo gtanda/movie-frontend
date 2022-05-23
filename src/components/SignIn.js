@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import loginService from '../services/login';
+import sessionService from '../services/session';
+import profileService from '../services/profile';
 import styles from '../styles/SignIn.module.css'
 
 import { GiPopcorn } from 'react-icons/gi';
@@ -12,9 +13,12 @@ const SignIn = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault()
-        const login = await loginService.login({username, password})
-        if (login.isAuth) {
-            navigate(`/profile/${username}`)
+        const user = await sessionService.login({username, password})
+        console.log(user)
+        if (user.id) {
+            navigate(`/profile/${user.id}`)
+        } else {
+            navigate('/signIn')
         }
         setUsername('')
         setPassword('')
@@ -24,8 +28,8 @@ const SignIn = () => {
 
     const getImagesFromStorage = () => {
         for (let i =0; i < 3; i++) {
-            if (window.localStorage.getItem(`poster_${i}`)) {
-                backgroundImages.add(window.localStorage.getItem(`poster_${i}`))
+            if (window.localStorage.getItem(`tv_poster_${i}`)) {
+                backgroundImages.add(window.localStorage.getItem(`tv_poster_${i}`))
             }
         }
     }
