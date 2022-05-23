@@ -15,7 +15,7 @@ const SignIn = () => {
         const user = await sessionService.login({username, password})
         console.log('user', user)
         if (user.userId) {
-            navigate(`/profile/${user.userId}`)
+            navigate('/profile')
         } else {
             navigate('/signIn')
         }

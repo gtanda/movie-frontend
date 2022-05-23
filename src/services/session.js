@@ -7,7 +7,7 @@ const login = async (credentials) => {
 }
 
 const logout = async () => {
-    const request = await axios.post(baseUrl);
+    const request = await axios.delete(baseUrl);
     return request.data;
 }
 

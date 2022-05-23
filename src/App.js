@@ -26,6 +26,12 @@ const App = () => {
 
     console.log('user state', user)
 
+
+    const handleLogout = async () => {
+        const destroyedSession = await sessionService.logout()
+        console.log(destroyedSession)
+    }
+
     return (
         <>
             <Router>
@@ -46,13 +52,20 @@ const App = () => {
                         className={styles.link + ' ' + styles.signUpButton}>
                         Sign In
                     </Link>}
-                    {user && <Link
+                    {
+                        user.loggedIn && <Link
+                            onClick={handleLogout}
+                            to={'/'}
+                            className={styles.link + ' ' + styles.signUpButton}>
+                            Logout
+                        </Link>
+                    }
+
+                    {user.loggedIn && <Link
                         to={'/profile'}
                         className={styles.link + ' ' + styles.signUpButton}>
                         Profile
                     </Link>}
-
-
                     <Link
                         to="/"
                         className={styles.link + ' ' + styles.signUpButton}

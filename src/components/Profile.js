@@ -1,7 +1,6 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from 'react';
 import profileService from '../services/profile';
-import sessionService from '../services/session':
 import {useNavigate} from "react-router-dom";
 
 const Profile = () => {
@@ -23,14 +22,12 @@ const Profile = () => {
         }
 
         getInfo()
-    }, [])
+    }, [username, email])
 
     return (
         <>
             {username ? <p>Welcome {username}!</p> : <p>User ID: {id}</p>}
-            <form>
-                <button type={"submit"} >Logout</button>
-            </form>
+            {email ? <p>Email: {email}</p> : null}
         </>
     )
 }
