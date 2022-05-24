@@ -1,10 +1,9 @@
-import {useParams} from "react-router-dom";
 import {useEffect, useState} from 'react';
 import profileService from '../services/profile';
 import {useNavigate} from "react-router-dom";
-
+import styles from '../styles/Profile.module.css';
 const Profile = () => {
-    const {id} = useParams()
+
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
 
@@ -21,13 +20,27 @@ const Profile = () => {
             setEmail(userInfo.email)
         }
 
-        getInfo()
-    }, [username, email])
+        getInfo().catch(err => console.error(err));
+    })
 
     return (
         <>
-            {username ? <p>Welcome {username}!</p> : <p>User ID: {id}</p>}
-            {email ? <p>Email: {email}</p> : null}
+            <h3>{username ? `Welcome ${username}! `: 'User Does not Exist'}</h3>
+            <form className={styles.formStyle}>
+                <div className={styles.inputDivs}>
+                    <p>Update Username</p>
+                    <input className={styles.inputBlocks} placeholder={'enter new username'}/>
+                </div>
+                <div className={styles.inputDivs}>
+                    <p>Update Email</p>
+                    <input type={"email"} className={styles.inputBlocks} placeholder={'enter new email'}/>
+                </div>
+                <div className={styles.inputDivs}>
+                    <p>Update Password</p>
+                    <input type={"password"} className={styles.inputBlocks} placeholder={'enter new password'}/>
+                </div>
+                <button type={"submit"} className={styles.submitStyle}>Update Profile</button>
+            </form>
         </>
     )
 }

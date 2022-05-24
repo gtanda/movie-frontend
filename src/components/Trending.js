@@ -1,5 +1,5 @@
 import MovieCard from './MovieCard';
-import movieService from '../services/movies';
+import videoService from '../services/videos';
 import { useState, useEffect } from 'react';
 
 import styles from '../styles/Trending.module.css';
@@ -30,7 +30,7 @@ const Trending = () => {
 
     useEffect(() => {
         const fetchTrending = async (type) => {
-            const trendingData = await movieService.getTrending(type);
+            const trendingData = await videoService.getTrending(type);
             if (type === 'movie') {
                 setTrendingMovies(trendingData.results);
             } else {

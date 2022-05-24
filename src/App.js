@@ -29,7 +29,7 @@ const App = () => {
 
     const handleLogout = async () => {
         const destroyedSession = await sessionService.logout()
-        console.log(destroyedSession)
+        console.log('des', destroyedSession)
     }
 
     return (
