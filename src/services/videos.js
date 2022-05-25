@@ -3,16 +3,15 @@ const baseUrl = 'api/movies';
 const trailerUrl = 'api/trailers';
 
 
-const addToWatchList = async (data, user) => {
-    console.log(user)
-    const request = await axios.post(baseUrl, {data, user});
+const getWatchList = async (user) => {
+    const request = await axios.get(baseUrl, {params: {user}})
     return request.data;
 }
 
-const getTrending = async (type) => {
-    const request = await axios.get(`${baseUrl}`, {params: {searchType: type}});
+const addToWatchList = async (data, user) => {
+    const request = await axios.post(baseUrl, {data, user});
     return request.data;
-};
+}
 
 
 const getTrailer = async (title, releaseDate) => {
@@ -20,4 +19,4 @@ const getTrailer = async (title, releaseDate) => {
     return request.data;
 }
 
-export default { getTrending, getTrailer, addToWatchList };
+export default {getTrailer, addToWatchList, getWatchList};

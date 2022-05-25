@@ -1,5 +1,5 @@
 import MovieCard from './MovieCard';
-import videoService from '../services/videos';
+import tmdbService from '../services/tmdb';
 import { useState, useEffect } from 'react';
 
 import styles from '../styles/Trending.module.css';
@@ -30,7 +30,7 @@ const Trending = ({user}) => {
 
     useEffect(() => {
         const fetchTrending = async (type) => {
-            const trendingData = await videoService.getTrending(type);
+            const trendingData = await tmdbService.getTrending(type);
             if (type === 'movie') {
                 setTrendingMovies(trendingData.results);
             } else {
