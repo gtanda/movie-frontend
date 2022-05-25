@@ -7,4 +7,9 @@ const signUp = async (username, email, password, confirmPassword) => {
     return request.data;
 }
 
-export default {signUp}
+const getWatchList = async (username) => {
+    const request = await axios.get(baseUrl, {params: username})
+    return request.data;
+}
+
+export default {signUp, getWatchList}
