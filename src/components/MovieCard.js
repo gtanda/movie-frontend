@@ -2,20 +2,34 @@ import {useState} from "react";
 import YouTube from 'react-youtube';
 import videoService from '../services/videos';
 import styles from '../styles/MovieCard.module.css';
+import Modal from 'react-modal';
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
 
 const MovieCard = ({ trendingData, onHover, onLeave }) => {
+    let subtitle;
+    const [modalIsOpen, setIsOpen] = useState(false);
 
     const [videoID, setVideoID] = useState(null)
     const getTrailer = async (title, releaseDate) => {
         const trailerInfo = await videoService.getTrailer(title, releaseDate)
-        setVideoID(trailerInfo.id.videoId)
-        console.log(videoID)
-        console.log('trailer info', trailerInfo)
+        setIsOpen(true)
+        setVideoID(trailerInfo.id.videoId);
+        console.log(videoID);
+        console.log('trailer info', trailerInfo);
         renderVideo();
     }
 
     const _onReady = (event) => {
-        // access to player in all event handlers via event.target
         event.target.pauseVideo();
     }
 
@@ -24,7 +38,6 @@ const MovieCard = ({ trendingData, onHover, onLeave }) => {
             height: '390',
             width: '640',
             playerVars: {
-                // https://developers.google.com/youtube/player_parameters
                 autoplay: 1,
             },
         }
@@ -40,6 +53,18 @@ const MovieCard = ({ trendingData, onHover, onLeave }) => {
 
     return (
         <>
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={() => setIsOpen(false)}
+                style={customStyles}
+            >
+                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+                <button onClick={() => setIsOpen(false)}>close</button>
+                <div style={{display: 'inline-block'}}>
+                    {videoID && renderVideo()}
+                </div>
+            </Modal>
+
         <div
             className={styles.mainDivStyle}
             onMouseOver={onHover}
@@ -72,7 +97,6 @@ const MovieCard = ({ trendingData, onHover, onLeave }) => {
                 </div>
             ) : null}
         </div>
-            {videoID && renderVideo()}
         </>
     );
 };
