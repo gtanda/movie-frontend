@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import styles from '../styles/Trending.module.css';
 
-const Trending = () => {
+const Trending = ({user}) => {
     const [trendingMovies, setTrendingMovies] = useState([]);
     const [trendingTv, setTrendingTv] = useState([]);
 
@@ -95,6 +95,7 @@ const Trending = () => {
                                   trendingData={movie}
                                   onHover={() => onHover(movie.id, 'movie')}
                                   onLeave={() => onLeave(movie.id, 'movie')}
+                                  user={user}
                               />
                           );
                       })
@@ -111,6 +112,7 @@ const Trending = () => {
                                 trendingData={show}
                                 onHover={() => onHover(show.id, 'show')}
                                 onLeave={() => onLeave(show.id, 'show')}
+                                user={user}
                             />
                         );
                     })

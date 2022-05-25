@@ -1,8 +1,8 @@
 import Trending from './Trending';
-const Home = () => {
+const Home = ({user}) => {
     return (
         <>
-            <Trending />
+            <Trending user={user}/>
         </>
     );
 };

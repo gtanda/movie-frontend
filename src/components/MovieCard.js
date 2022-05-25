@@ -15,11 +15,10 @@ const customStyles = {
     },
 };
 
-const MovieCard = ({ trendingData, onHover, onLeave }) => {
-    let subtitle;
+const MovieCard = ({ user,trendingData, onHover, onLeave }) => {
     const [modalIsOpen, setIsOpen] = useState(false);
-
     const [videoID, setVideoID] = useState(null)
+
     const getTrailer = async (title, releaseDate) => {
         const trailerInfo = await videoService.getTrailer(title, releaseDate)
         setIsOpen(true)
@@ -45,7 +44,7 @@ const MovieCard = ({ trendingData, onHover, onLeave }) => {
 
         return (
             <div>
-                <YouTube videoId={videoID} opts={opts} onReady={_onReady} onEnd={() => setVideoID(null)}/>;
+                <YouTube videoId={videoID} opts={opts} onReady={_onReady}/>;
             </div>
         )
     }
@@ -54,13 +53,13 @@ const MovieCard = ({ trendingData, onHover, onLeave }) => {
     return (
         <>
             <Modal
+                ariaHideApp={false}
                 isOpen={modalIsOpen}
                 onRequestClose={() => setIsOpen(false)}
                 style={customStyles}
             >
-                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
                 <button onClick={() => setIsOpen(false)}>close</button>
-                <div style={{display: 'inline-block'}}>
+                <div>
                     {videoID && renderVideo()}
                 </div>
             </Modal>
@@ -71,7 +70,7 @@ const MovieCard = ({ trendingData, onHover, onLeave }) => {
             onMouseLeave={onLeave}
         >
             <img
-                alt="Movie Poster"
+                alt="Poster"
                 src={`https://image.tmdb.org/t/p/w342/${trendingData.poster_path}`}
             />
             {trendingData.isHovering ? (
@@ -85,14 +84,14 @@ const MovieCard = ({ trendingData, onHover, onLeave }) => {
 
                     <div className={styles.ratingAndReviewStyle}>
                         <div>
-                            <a className={styles.addToList} onClick={() => getTrailer(trendingData.title, trendingData.release_date)}>Watch Trailer</a>
+                            <a className={styles.addToList} onClick={() => getTrailer(trendingData.title || trendingData.name, trendingData.release_date || trendingData.first_air_date)}>Watch Trailer</a>
                         </div>
                         <h6 className={styles.hoverStyle}>
                             {trendingData.userReviews === 0
                                 ? 'No Reviews Yet'
                                 : `Rating: ${trendingData.vote_average} based on ${trendingData.vote_count} votes`}
                         </h6>
-                        <a className={styles.addToList}>Add To Watch List</a>
+                        <a className={styles.addToList} onClick={() => videoService.addToWatchList(trendingData, user)}>Add To Watch List</a>
                     </div>
                 </div>
             ) : null}
