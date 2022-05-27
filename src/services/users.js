@@ -8,7 +8,7 @@ const signUp = async (username, email, password, confirmPassword) => {
 }
 
 const getWatchList = async (username) => {
-    const request = await axios.get(baseUrl, {params: username})
+    const request = await axios.get(baseUrl, {params: {username}})
     return request.data;
 }
 

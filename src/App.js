@@ -6,29 +6,39 @@ import Home from './components/Home';
 import UnknownEndpoint from "./components/UnknownEndpoint";
 import Profile from "./components/Profile";
 import sessionService from './services/session';
+import userService from './services/users';
 import styles from './styles/App.module.css';
 
 const App = () => {
     const [user, setUser] = useState({})
 
     useEffect(() => {
-        const isUserLoggedIn = async () => {
-            const userCheck = await sessionService.isUserLoggedIn()
-            if (userCheck.user) {
-                const {username, userId, email} = userCheck.user
-                setUser({username: username, id: userId, email: email, loggedIn: userCheck.loggedIn})
-            } else {
-                setUser({loggedIn: false})
-            }
+        isUserLoggedIn().catch(err => console.error(err))
+        console.log(user)
+        if (user.loggedIn) {
+            getWatchList().catch(err => console.error('Watchglist Error', err))
         }
-        isUserLoggedIn().catch(err => console.error('error', err))
-    }, [])
+    }, [user.loggedIn])
 
-    console.log('user state', user)
+    const isUserLoggedIn = async () => {
+        const userCheck = await sessionService.isUserLoggedIn()
+        if (userCheck.user) {
+            const {username, userId, email} = userCheck.user
+            setUser({username: username, id: userId, email: email, loggedIn: userCheck.loggedIn})
+        } else {
+            setUser({loggedIn: false})
+        }
+    }
+
+    const getWatchList = async () => {
+        const userWatchList = await userService.getWatchList(user.username)
+        console.log('watchlist', userWatchList.watchList);
+    }
 
 
     const handleLogout = async () => {
         const destroyedSession = await sessionService.logout()
+        setUser(null)
         console.log('des', destroyedSession)
     }
 
