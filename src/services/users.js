@@ -13,3 +13,9 @@ const getWatchList = async (username) => {
 }
 
 export default {signUp, getWatchList}
+
+// TODO
+
+// Create watchlist component
+// Refactor trending data to be a component
+// Add carousel to replace current display on video pages

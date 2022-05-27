@@ -6,4 +6,16 @@ const getProfileInfo = async () => {
     return request.data;
 }
 
-export default {getProfileInfo}
+const updateUsername = async (username, newUsername) => {
+    return await axios.patch(`${baseUrl}/updateUsername`, {username, newUsername});
+}
+
+const updateEmail = async (email, newEmail) => {
+    return await axios.patch(`${baseUrl}/updateEmail`, {email, newEmail});
+}
+
+const updatePassword = async (email, newPassword) => {
+    return await axios.patch(`${baseUrl}/updatePassword`, {email, newPassword});
+}
+
+export default {getProfileInfo, updateUsername, updateEmail, updatePassword}
