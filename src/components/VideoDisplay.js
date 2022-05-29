@@ -1,8 +1,11 @@
 import MovieCard from "./MovieCard";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import {Carousel} from 'react-responsive-carousel';
 
 const VideoDisplay = ({videos, user, onHover, onLeave}) => {
     return (
         <div>
+            <Carousel infiniteLoop={true}>
             {videos
                 ? videos.map((movie) => {
                     return (
@@ -16,6 +19,7 @@ const VideoDisplay = ({videos, user, onHover, onLeave}) => {
                     );
                 })
                 : null}
+            </Carousel>
         </div>
     )
 }
