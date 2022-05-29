@@ -51,31 +51,30 @@ const App = () => {
                         alt="TMDB Icon"
                         className={styles.iconStyle}
                     />
-                    {!user.loggedIn && <Link
+                    {!user.loggedIn ? <Link
                         to="/signUp"
                         className={styles.link + ' ' + styles.signUpButton}>
                         Sign Up
-                    </Link>}
+                    </Link> : null}
 
-                    {!user.loggedIn && <Link
+                    {!user.loggedIn ? <Link
                         to="/signIn"
                         className={styles.link + ' ' + styles.signUpButton}>
                         Sign In
-                    </Link>}
-                    {
-                        user.loggedIn && <Link
+                    </Link> : null}
+                    {user.loggedIn ? <Link
                             onClick={handleLogout}
                             to={'/'}
                             className={styles.link + ' ' + styles.signUpButton}>
                             Logout
                         </Link>
-                    }
+                        : null}
 
-                    {user.loggedIn && <Link
+                    {user.loggedIn ? <Link
                         to={'/profile'}
                         className={styles.link + ' ' + styles.signUpButton}>
                         Profile
-                    </Link>}
+                    </Link> : null}
                     <Link
                         to="/"
                         className={styles.link + ' ' + styles.signUpButton}
