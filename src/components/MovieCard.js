@@ -49,7 +49,6 @@ const MovieCard = ({ user,trendingData, onHover, onLeave }) => {
         )
     }
 
-
     return (
         <>
             <Modal
