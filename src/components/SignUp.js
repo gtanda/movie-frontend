@@ -33,16 +33,16 @@ const SignUp = () => {
             }
         }
     }
+
+
     getImagesFromStorage()
-
-
     return (
         <div>
-            <div className={styles.leftSide1} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780${Array.from(backgroundImages)[0]})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.leftSide1} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[0]})`, backgroundRepeat: 'no-repeat'}}>
             </div>
-            <div className={styles.leftSide2} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780${Array.from(backgroundImages)[1]})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.leftSide2} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[1]})`, backgroundRepeat: 'no-repeat'}}>
             </div>
-            <div className={styles.leftSide3} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780${Array.from(backgroundImages)[2]})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.leftSide3} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[2]})`, backgroundRepeat: 'no-repeat'}}>
             </div>
             <div className={styles.formStyle}>
                 <h3>

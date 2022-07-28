@@ -34,11 +34,11 @@ const SignIn = () => {
 
     return (
         <div>
-            <div className={styles.rightSide1} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780${Array.from(backgroundImages)[0]})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.rightSide1} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[0]})`, backgroundRepeat: 'no-repeat'}}>
             </div>
-            <div className={styles.rightSide2} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780${Array.from(backgroundImages)[1]})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.rightSide2} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[1]})`, backgroundRepeat: 'no-repeat'}}>
             </div>
-            <div className={styles.rightSide3} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780${Array.from(backgroundImages)[2]})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.rightSide3} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[2]})`, backgroundRepeat: 'no-repeat'}}>
             </div>
             <div className={styles.formStyle}>
                 <h3>

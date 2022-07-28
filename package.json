@@ -11,7 +11,11 @@
         "react-dom": "^18.1.0",
         "react-icons": "^4.3.1",
         "react-modal": "^3.15.1",
+<<<<<<< HEAD
         "react-multi-carousel": "^2.8.2",
+=======
+        "react-multi-carousel": "^2.8.0",
+>>>>>>> 62aa0d1a48814b8392ffd7969da1fb3389e32662
         "react-router-dom": "^6.3.0",
         "react-scripts": "5.0.1",
         "react-youtube": "^9.0.1",
