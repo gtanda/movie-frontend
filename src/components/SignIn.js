@@ -2,7 +2,6 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import sessionService from '../services/session';
 import styles from '../styles/SignIn.module.css'
-
 import { GiPopcorn } from 'react-icons/gi';
 const SignIn = () => {
     const [username, setUsername] = useState('')
@@ -14,11 +13,12 @@ const SignIn = () => {
         e.preventDefault()
         const user = await sessionService.login({username, password})
         console.log('user', user)
-        if (user.userId) {
-            navigate('/')
-        }
         setUsername('')
         setPassword('')
+        if (user.userId) {
+            navigate('/', {replace: true})
+            window.location.reload();
+        }
     }
 
     const backgroundImages = new Set()

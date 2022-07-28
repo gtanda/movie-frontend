@@ -18,4 +18,3 @@ export default {signUp, getWatchList}
 
 // Create watchlist component
 // Refactor trending data to be a component
-// Add carousel to replace current display on video pages

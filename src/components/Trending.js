@@ -1,4 +1,3 @@
-import MovieCard from './MovieCard';
 import VideoDisplay from "./VideoDisplay";
 import tmdbService from '../services/tmdb';
 import {useState, useEffect} from 'react';

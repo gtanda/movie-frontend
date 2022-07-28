@@ -14,14 +14,15 @@ const App = () => {
 
     useEffect(() => {
         isUserLoggedIn().catch(err => console.error(err))
-        console.log(user)
+        console.log('app', user)
         if (user.loggedIn) {
-            getWatchList().catch(err => console.error('Watchglist Error', err))
+            getWatchList().catch(err => console.error('Watchlist Error', err))
         }
     }, [user.loggedIn])
 
     const isUserLoggedIn = async () => {
         const userCheck = await sessionService.isUserLoggedIn()
+        console.log('usercheck', userCheck)
         if (userCheck.user) {
             const {username, userId, email} = userCheck.user
             setUser({username: username, id: userId, email: email, loggedIn: userCheck.loggedIn})
@@ -38,7 +39,7 @@ const App = () => {
 
     const handleLogout = async () => {
         const destroyedSession = await sessionService.logout()
-        setUser(null)
+        setUser({loggedIn: false})
         console.log('des', destroyedSession)
     }
 
