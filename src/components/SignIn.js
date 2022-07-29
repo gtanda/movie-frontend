@@ -6,13 +6,16 @@ import { GiPopcorn } from 'react-icons/gi';
 const SignIn = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-
+    const [message, setMessage] = useState(null)
     const navigate = useNavigate()
 
     const handleSignIn = async (e) => {
         e.preventDefault()
         const user = await sessionService.login({username, password})
         console.log('user', user)
+        if (!user.userId) {
+            setMessage('Invalid username or password')
+        }
         setUsername('')
         setPassword('')
         if (user.userId) {
@@ -34,6 +37,7 @@ const SignIn = () => {
 
     return (
         <div>
+            {message ? <p>{message}</p> : null}
             <div className={styles.rightSide1} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[0]})`, backgroundRepeat: 'no-repeat'}}>
             </div>
             <div className={styles.rightSide2} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[1]})`, backgroundRepeat: 'no-repeat'}}>

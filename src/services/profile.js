@@ -7,7 +7,8 @@ const getProfileInfo = async () => {
 }
 
 const updateUsername = async (username, newUsername) => {
-    return await axios.patch(`${baseUrl}/updateUsername`, {username, newUsername});
+    const request = await axios.patch(`${baseUrl}/updateUsername`, {username, newUsername});
+    return request.data;
 }
 
 const updateEmail = async (email, newEmail) => {
