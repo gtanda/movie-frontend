@@ -27,6 +27,16 @@ const Profile = () => {
     })
   }, [])
 
+  const profileUpdateHelper = (message, messageStatus) => {
+    setMessage(message)
+    setMessageStatus(messageStatus)
+
+    setTimeout(() => {
+      setMessage(null)
+      setMessageStatus(null)
+    }, 3000)
+  }
+
   const handleUserUpdate = async (
     e,
     oldPropertyValue,
@@ -37,33 +47,32 @@ const Profile = () => {
     switch (propertyToUpdate) {
       case 'username':
         if (newPropertyValue.length < 3) {
-          setMessage('Username must be at least 3 characters long')
-          setMessageStatus('error')
-          setTimeout(() => {
-            setMessage(null)
-            setMessageStatus(null)
-          }, 3000)
+          profileUpdateHelper(
+            'Username must be at least 3 characters long',
+            'error'
+          )
           return
         }
         const updated = await profileService.updateUsername(
           oldPropertyValue,
           newPropertyValue
         )
-        console.log('upD', updated)
         if (updated.user) {
           setUsername(updated.user.username)
-          setMessageStatus(updated.messageStatus)
         }
-        setMessage(updated.message)
-
-        setTimeout(() => {
-          setMessage(null)
-          setMessageStatus(null)
-        }, 3000)
+        profileUpdateHelper(updated.message, updated.messageStatus)
         setUsernameInput('')
         break
       case 'email':
-        await profileService.updateEmail(oldPropertyValue, newPropertyValue)
+        const emailUpdated = await profileService.updateEmail(
+          oldPropertyValue,
+          newPropertyValue
+        )
+        console.log('emailUpdated', emailUpdated)
+        if (emailUpdated.user) {
+          setEmail(emailUpdated.user.email)
+        }
+        profileUpdateHelper(emailUpdated.message, emailUpdated.messageStatus)
         setEmailInput('')
         break
       case 'password':
