@@ -19,12 +19,15 @@ const updateEmail = async (email, newEmail) => {
     email,
     newEmail
   })
-  console.log(request)
   return request.data
 }
 
 const updatePassword = async (email, newPassword) => {
-  return await axios.patch(`${baseUrl}/updatePassword`, { email, newPassword })
+  const request = await axios.patch(`${baseUrl}/updatePassword`, {
+    email,
+    newPassword
+  })
+  return request.data
 }
 
 export default { getProfileInfo, updateUsername, updateEmail, updatePassword }

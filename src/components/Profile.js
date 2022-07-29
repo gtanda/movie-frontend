@@ -68,7 +68,7 @@ const Profile = () => {
           oldPropertyValue,
           newPropertyValue
         )
-        console.log('emailUpdated', emailUpdated)
+
         if (emailUpdated.user) {
           setEmail(emailUpdated.user.email)
         }
@@ -76,11 +76,27 @@ const Profile = () => {
         setEmailInput('')
         break
       case 'password':
-        await profileService.updatePassword(oldPropertyValue, newPropertyValue)
+        const passwordUpdate = await profileService.updatePassword(
+          oldPropertyValue,
+          newPropertyValue
+        )
+
+        if (newPropertyValue.length < 3) {
+          profileUpdateHelper(
+            'Password must be at least 3 characters long',
+            'error'
+          )
+          return
+        }
+
+        profileUpdateHelper(
+          passwordUpdate.message,
+          passwordUpdate.messageStatus
+        )
         setPasswordInput('')
         break
       default:
-        console.error('Could not update user profile')
+        profileUpdateHelper('Something went wrong', 'error')
     }
   }
 
