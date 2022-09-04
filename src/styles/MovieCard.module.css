@@ -1,57 +1,58 @@
 .mainDivStyle {
-    position: relative;
-    margin: 3vh 2vh;
-    display: inline-block;
-    border: 0.4vh solid #5f5e6e;
+  position: relative;
+  margin: 2vh 2vh;
+  display: inline-block;
+  border: 0.4vh solid #5f5e6e;
+  opacity: 1;
 }
 
 .blanketStyle {
-    background-color: black;
-    opacity: 0.9;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
+  background-color: black;
+  opacity: 0.9;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
 }
 
 .imageOverViewStyle {
-    margin: 0.2vh 0.5vh;
-    color: white;
-    overflow: auto;
-    z-index: 1;
-    height: 60%;
-    width: 95%;
+  margin: 0.2vh 0.5vh;
+  color: white;
+  overflow: auto;
+  z-index: 1;
+  height: 100%;
 }
 
 .ratingAndReviewStyle {
-    position: absolute;
-    font-size: 1.4rem;
-    bottom: 1.2vh;
-    left: 0.2vh;
+  position: absolute;
+  font-size: 1.4rem;
+  bottom: 1.2vh;
+  left: 0.2vh;
 }
 
 .hoverStyle {
-    z-index: 1;
-    color: white;
-    margin: 1vh 0.2vh;
-    display: block;
-    width: 80%;
-    word-wrap: break-word;
+  z-index: 1;
+  color: white;
+  margin: 1vh 0.2vh;
+  display: block;
+  width: 80%;
+  word-wrap: break-word;
 }
 
 .homeMovies {
-    text-align: center;
-    margin: auto;
+  text-align: center;
+  margin: auto;
 }
 
 .addToList {
-    margin: 0.4vh;
+  margin: 0.4vh;
 }
 
 .addToList:hover {
-    border-bottom: 0.2rem solid white;
-    padding-right: 0.6rem;
-    cursor: pointer;
+  border-bottom: 0.2rem solid white;
+  padding-right: 0.6rem;
+  cursor: pointer;
 }

@@ -3,9 +3,12 @@ import YouTube from 'react-youtube'
 import videoService from '../services/videos'
 import styles from '../styles/MovieCard.module.css'
 import Modal from 'react-modal'
+import Button from '@mui/material/Button'
+import CloseIcon from '@mui/icons-material/Close'
 
 const customStyles = {
   content: {
+    backgroundColor: '#000',
     top: '50%',
     left: '50%',
     right: 'auto',
@@ -26,22 +29,21 @@ const MovieCard = ({ user, trendingData, onHover, onLeave }) => {
     renderVideo()
   }
 
-  const _onReady = (event) => {
-    event.target.pauseVideo()
-  }
-
   const renderVideo = () => {
     const opts = {
-      height: '390',
+      height: '400',
       width: '640',
       playerVars: {
         autoplay: 1
       }
     }
+    const _onReady = (event) => {
+      event.target.pauseVideo()
+    }
 
     return (
       <div>
-        <YouTube videoId={videoID} opts={opts} onReady={_onReady} />;
+        <YouTube videoId={videoID} opts={opts} onReady={_onReady} />
       </div>
     )
   }
@@ -54,14 +56,19 @@ const MovieCard = ({ user, trendingData, onHover, onLeave }) => {
         onRequestClose={() => setIsOpen(false)}
         style={customStyles}
       >
-        <button onClick={() => setIsOpen(false)}>close</button>
+        <Button
+          startIcon={<CloseIcon />}
+          variant="outlined"
+          onClick={() => setIsOpen(false)}
+        >
+          close
+        </Button>
         <div>{videoID && renderVideo()}</div>
       </Modal>
-
       <div
         className={styles.mainDivStyle}
         onMouseOver={onHover}
-        onMouseLeave={onLeave}
+        onMouseOut={onLeave}
       >
         <img
           alt="Poster"

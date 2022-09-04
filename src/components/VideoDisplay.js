@@ -20,7 +20,6 @@ const responsive = {
 }
 
 const VideoDisplay = ({ videos, user, onHover, onLeave }) => {
-  console.log(videos)
   return (
     <div>
       <Carousel infinite={true} responsive={responsive}>
