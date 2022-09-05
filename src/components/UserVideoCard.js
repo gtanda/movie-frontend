@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -22,7 +21,7 @@ const customStyles = {
         transform: 'translate(-50%, -50%)'
     }
 }
-const VideoCard = ({user, trendingData}) => {
+const UserVideoCard = ({user, trendingData}) => {
     const [modalIsOpen, setIsOpen] = useState(false)
     const [videoID, setVideoID] = useState(null)
 
@@ -90,16 +89,15 @@ const VideoCard = ({user, trendingData}) => {
             </CardContent>
             <CardActions>
                 <Button size="small"
-                        onClick={() => videoService.addToWatchList(trendingData, user)}
-                >Add To
-                    List</Button>
+                        onClick={() => videoService.removeFromWatchList(trendingData, user)}
+                >Remove From List</Button>
                 <Button size="small"
-                    onClick={(e) => getTrailer(e, trendingData.title || trendingData.name,
-                        trendingData.release_date || trendingData.first_air_date
-                )}>Watch Trailer</Button>
+                        onClick={(e) => getTrailer(e, trendingData.title || trendingData.name,
+                            trendingData.release_date || trendingData.first_air_date
+                        )}>Watch Trailer</Button>
             </CardActions>
         </Card>
     );
 }
 
-export default VideoCard;
+export default UserVideoCard;

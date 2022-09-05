@@ -1,6 +1,7 @@
+import UserVideoDisplay from "./UserVideoDisplay";
 import VideoDisplay from './VideoDisplay'
-import tmdbService from '../services/tmdb'
 import userService from '../services/users'
+import tmdbService from '../services/tmdb'
 import { useState, useEffect } from 'react'
 import styles from '../styles/Trending.module.css'
 
@@ -60,80 +61,21 @@ const Trending = ({ user }) => {
     const fetchWatchList = async () => {
       const returnedList = await userService.getWatchList(user.username)
       setUserWatchList(userWatchList.concat(returnedList))
-      console.log(userWatchList)
-      console.log(trendingMovies)
     }
     fetchWatchList()
   }, [])
-
-  const onHover = (id, type) => {
-    if (type === 'movie') {
-      const movieToChange = trendingMovies.find((movie) => movie.id === id)
-      movieToChange.isHovering = true
-      const movies = trendingMovies.map((movie) =>
-        movie.id !== id ? movie : movieToChange
-      )
-      setTrendingMovies(movies)
-    } else if (type === 'tv') {
-      const showToChange = trendingTv.find((show) => show.id === id)
-      showToChange.isHovering = true
-      const shows = trendingTv.map((show) =>
-        show.id !== id ? show : showToChange
-      )
-      setTrendingTv(shows)
-    } else if (userWatchList.length > 0) {
-      const watchListHover = userWatchList.find((show) => show.id === id)
-      watchListHover.isHovering = true
-      const watchList = userWatchList.map((show) =>
-        show.id !== id ? show : watchListHover
-      )
-      setUserWatchList(watchList)
-    }
-  }
-
-  const onLeave = (id, type) => {
-    if (type === 'movie') {
-      const movieToChange = trendingMovies.find((movie) => movie.id === id)
-      movieToChange.isHovering = false
-
-      const movies = trendingMovies.map((movie) =>
-        movie.id !== id ? movie : movieToChange
-      )
-      setTrendingMovies(movies)
-    } else if (type === 'tv') {
-      const showToChange = trendingTv.find((show) => show.id === id)
-      showToChange.isHovering = false
-
-      const shows = trendingTv.map((show) =>
-        show.id !== id ? show : showToChange
-      )
-      setTrendingTv(shows)
-    } else if (userWatchList.length > 0) {
-      const watchListHover = userWatchList.find((data) => data.id === id)
-      watchListHover.isHovering = false
-      const watchList = userWatchList.map((data) =>
-        data.id !== id ? data : watchListHover
-      )
-      setUserWatchList(watchList)
-    }
-  }
-
 
   return (
     <>
       <p className={styles.title}>Trending Movies</p>
       <VideoDisplay
         videos={trendingMovies}
-        onHover={onHover}
-        onLeave={onLeave}
         user={user}
       />
 
       <p className={styles.title}>Trending TV Shows</p>
       <VideoDisplay
         videos={trendingTv}
-        onHover={onHover}
-        onLeave={onLeave}
         user={user}
       />
       {user && userWatchList.length > 0 ? (
@@ -141,10 +83,8 @@ const Trending = ({ user }) => {
           <p className={styles.title}>
             {user.username.toUpperCase()}'s Watch List
           </p>
-          <VideoDisplay
+          <UserVideoDisplay
             videos={userWatchList}
-            onHover={onHover}
-            onLeave={onLeave}
             user={user}
           />
         </div>

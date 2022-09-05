@@ -20,7 +20,7 @@ const responsive = {
   }
 }
 
-const VideoDisplay = ({ videos, user, onHover, onLeave }) => {
+const VideoDisplay = ({ videos, user}) => {
   return (
     <div>
       <Carousel infinite={true} responsive={responsive}>
@@ -30,8 +30,6 @@ const VideoDisplay = ({ videos, user, onHover, onLeave }) => {
                 <VideoCard
                   key={video.id}
                   trendingData={video}
-                  onHover={() => onHover(video.id, video.media_type)}
-                  onLeave={() => onLeave(video.id, video.media_type)}
                   user={user}
                 />
               )
