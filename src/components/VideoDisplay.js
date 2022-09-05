@@ -1,6 +1,7 @@
-import MovieCard from './MovieCard'
 import 'react-multi-carousel/lib/styles.css'
 import Carousel from 'react-multi-carousel'
+import VideoCard from "./VideoCard";
+
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -26,7 +27,7 @@ const VideoDisplay = ({ videos, user, onHover, onLeave }) => {
         {videos
           ? videos.map((video) => {
               return (
-                <MovieCard
+                <VideoCard
                   key={video.id}
                   trendingData={video}
                   onHover={() => onHover(video.id, video.media_type)}

@@ -3,6 +3,8 @@ import {useNavigate} from "react-router-dom";
 import sessionService from '../services/session';
 import styles from '../styles/SignIn.module.css'
 import { GiPopcorn } from 'react-icons/gi';
+import {motion} from "framer-motion";
+
 const SignIn = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -67,13 +69,18 @@ const SignIn = () => {
                             className={styles.inputBlocks}
                         />
                     </div>
-                    <button
+                    <motion.button
                         type="submit"
                         onClick={handleSignIn}
                         className={styles.submitStyle}
+                        whileHover={{
+                            scale: 1.09,
+                            transition: { duration: 1 },
+                        }}
+                        whileTap={{ scale: 0.9 }}
                     >
                         Sign In
-                    </button>
+                    </motion.button>
                 </form>
             </div>
         </div>

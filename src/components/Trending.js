@@ -4,8 +4,6 @@ import userService from '../services/users'
 import { useState, useEffect } from 'react'
 import styles from '../styles/Trending.module.css'
 
-// TODO: Refactor trending data to be a component
-// TODO: Fix hover issue with watchlist
 
 const Trending = ({ user }) => {
   const [trendingMovies, setTrendingMovies] = useState([])
@@ -40,6 +38,7 @@ const Trending = ({ user }) => {
         break
     }
   }
+
 
   const fetchTrending = async (type) => {
     const trendingData = await tmdbService.getTrending(type)
@@ -119,8 +118,7 @@ const Trending = ({ user }) => {
     }
   }
 
-  console.log(trendingMovies)
-  console.log(userWatchList)
+
   return (
     <>
       <p className={styles.title}>Trending Movies</p>
