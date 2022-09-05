@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -6,52 +5,15 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {useState} from 'react';
-import YouTube from 'react-youtube';
 import videoService from '../services/videos';
 import Modal from 'react-modal';
 import CloseIcon from '@mui/icons-material/Close';
+import {customStyles} from "../utils/modalStyles";
+import {getTrailer, renderVideo} from "../utils/getTrailerHelper";
 
-const customStyles = {
-    content: {
-        backgroundColor: '#000',
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
-    }
-}
 const VideoCard = ({user, trendingData}) => {
     const [modalIsOpen, setIsOpen] = useState(false)
     const [videoID, setVideoID] = useState(null)
-
-    const getTrailer = async (e, title, releaseDate) => {
-        e.preventDefault();
-        const trailerInfo = await videoService.getTrailer(title, releaseDate)
-        setIsOpen(true)
-        setVideoID(trailerInfo.id.videoId)
-        renderVideo()
-    }
-
-    const renderVideo = () => {
-        const opts = {
-            height: '400',
-            width: '640',
-            playerVars: {
-                autoplay: 1
-            }
-        }
-        const _onReady = (event) => {
-            event.target.pauseVideo()
-        }
-
-        return (
-            <div>
-                <YouTube videoId={videoID} opts={opts} onReady={_onReady}/>
-            </div>
-        )
-    }
 
     return (
         <Card sx={{maxWidth: 400, minWidth: 250, backgroundColor: "black", mx: 'auto'}}>
@@ -90,13 +52,13 @@ const VideoCard = ({user, trendingData}) => {
             </CardContent>
             <CardActions>
                 <Button size="small"
-                        onClick={() => videoService.addToWatchList(trendingData, user)}
+                        onClick={() => videoService.addToWatchList(trendingData)}
                 >Add To
                     List</Button>
                 <Button size="small"
                     onClick={(e) => getTrailer(e, trendingData.title || trendingData.name,
-                        trendingData.release_date || trendingData.first_air_date
-                )}>Watch Trailer</Button>
+                        trendingData.release_date || trendingData.first_air_date, setVideoID, setIsOpen, videoID)}
+                >Watch Trailer</Button>
             </CardActions>
         </Card>
     );

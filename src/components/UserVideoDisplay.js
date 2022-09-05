@@ -1,6 +1,11 @@
 import 'react-multi-carousel/lib/styles.css'
 import Carousel from 'react-multi-carousel'
 import UserVideoCard from "./UserVideoCard";
+import {useEffect, useState, useContext} from "react";
+import videoService from "../services/videos";
+import Alert from "@mui/material/Alert";
+import {motion} from "framer-motion";
+import {UserWatchListContext} from "../contexts/UserWatchListContext";
 
 const responsive = {
     desktop: {
@@ -20,9 +25,25 @@ const responsive = {
     }
 }
 
-const VideoDisplay = ({ videos, user}) => {
+const UserVideoDisplay = ({ videos}) => {
+    const [message, setMessage] = useState(null)
+    const [messageStatus, setMessageStatus] = useState(null)
+
+    useEffect(() => {
+        const getUserWatchList = async () => {
+            setUserWatchList(await videoService.getWatchList());
+        }
+        getUserWatchList();
+    }, [message, messageStatus])
+
     return (
-        <div>
+        <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ ease: 'easeIn', duration: 2 }}>
+            {message && messageStatus ? (
+                <Alert severity={messageStatus}>{message}</Alert>
+            ) : null}
             <Carousel infinite={true} responsive={responsive}>
                 {videos
                     ? videos.map((video) => {
@@ -30,13 +51,14 @@ const VideoDisplay = ({ videos, user}) => {
                             <UserVideoCard
                                 key={video.id}
                                 trendingData={video}
-                                user={user}
+                                setMessage={setMessage}
+                                setMessageStatus={setMessageStatus}
                             />
                         )
                     })
                     : null}
             </Carousel>
-        </div>
+        </motion.div>
     )
 }
-export default VideoDisplay
+export default UserVideoDisplay

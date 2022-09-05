@@ -5,51 +5,21 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {useState} from 'react';
-import YouTube from 'react-youtube';
 import videoService from '../services/videos';
 import Modal from 'react-modal';
 import CloseIcon from '@mui/icons-material/Close';
+import {customStyles} from "../utils/modalStyles";
+import {getTrailer, renderVideo} from "../utils/getTrailerHelper";
+import {messageUpdateHelper} from "../utils/messageUpdateHelper";
 
-const customStyles = {
-    content: {
-        backgroundColor: '#000',
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
-    }
-}
-const UserVideoCard = ({user, trendingData}) => {
+const UserVideoCard = ({trendingData, setMessage, setMessageStatus}) => {
     const [modalIsOpen, setIsOpen] = useState(false)
     const [videoID, setVideoID] = useState(null)
 
-    const getTrailer = async (e, title, releaseDate) => {
+    const removeFromWatchList = async (e) => {
         e.preventDefault();
-        const trailerInfo = await videoService.getTrailer(title, releaseDate)
-        setIsOpen(true)
-        setVideoID(trailerInfo.id.videoId)
-        renderVideo()
-    }
-
-    const renderVideo = () => {
-        const opts = {
-            height: '400',
-            width: '640',
-            playerVars: {
-                autoplay: 1
-            }
-        }
-        const _onReady = (event) => {
-            event.target.pauseVideo()
-        }
-
-        return (
-            <div>
-                <YouTube videoId={videoID} opts={opts} onReady={_onReady}/>
-            </div>
-        )
+        const res = await videoService.removeFromWatchList(trendingData);
+        messageUpdateHelper(res.message, res.messageStatus, setMessage, setMessageStatus);
     }
 
     return (
@@ -89,12 +59,12 @@ const UserVideoCard = ({user, trendingData}) => {
             </CardContent>
             <CardActions>
                 <Button size="small"
-                        onClick={() => videoService.removeFromWatchList(trendingData, user)}
+                        onClick={(e) => removeFromWatchList(e)}
                 >Remove From List</Button>
                 <Button size="small"
                         onClick={(e) => getTrailer(e, trendingData.title || trendingData.name,
-                            trendingData.release_date || trendingData.first_air_date
-                        )}>Watch Trailer</Button>
+                            trendingData.release_date || trendingData.first_air_date, setVideoID, setIsOpen, renderVideo, videoID)}
+                >Watch Trailer</Button>
             </CardActions>
         </Card>
     );
