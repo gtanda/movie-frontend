@@ -25,9 +25,11 @@ const responsive = {
     }
 }
 
-const UserVideoDisplay = ({ videos}) => {
+const UserVideoDisplay = () => {
     const [message, setMessage] = useState(null)
     const [messageStatus, setMessageStatus] = useState(null)
+    const {setUserWatchList} = useContext(UserWatchListContext);
+    const {userWatchList} = useContext(UserWatchListContext);
 
     useEffect(() => {
         const getUserWatchList = async () => {
@@ -45,8 +47,8 @@ const UserVideoDisplay = ({ videos}) => {
                 <Alert severity={messageStatus}>{message}</Alert>
             ) : null}
             <Carousel infinite={true} responsive={responsive}>
-                {videos
-                    ? videos.map((video) => {
+                {userWatchList
+                    ? userWatchList.map((video) => {
                         return (
                             <UserVideoCard
                                 key={video.id}

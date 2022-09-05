@@ -39,7 +39,7 @@ const Trending = ({ user }) => {
   return (
     <>
       <p className={styles.title}>Trending Movies</p>
-      <UserWatchListContext.Provider value={{setUserWatchList}}>
+      <UserWatchListContext.Provider value={{setUserWatchList, userWatchList}}>
         <VideoDisplay
           videos={trendingMovies}
         />
@@ -48,7 +48,7 @@ const Trending = ({ user }) => {
         <VideoDisplay
           videos={trendingTv}
         />
-        {user && userWatchList.length > 0 ? (
+        {user.username && userWatchList.length > 0 ? (
           <div>
             <p className={styles.title}>
               {user.username.toUpperCase()}'s Watch List

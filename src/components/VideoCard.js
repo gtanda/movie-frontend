@@ -10,11 +10,17 @@ import Modal from 'react-modal';
 import CloseIcon from '@mui/icons-material/Close';
 import {customStyles} from "../utils/modalStyles";
 import {getTrailer, renderVideo} from "../utils/getTrailerHelper";
+import {messageUpdateHelper} from "../utils/messageUpdateHelper";
 
-const VideoCard = ({user, trendingData}) => {
+const VideoCard = ({trendingData, setMessage, setMessageStatus}) => {
     const [modalIsOpen, setIsOpen] = useState(false)
     const [videoID, setVideoID] = useState(null)
 
+    const addToWatchList = async (e) => {
+        e.preventDefault();
+        const res = await videoService.addToWatchList(trendingData);
+        messageUpdateHelper(res.message, res.messageStatus, setMessage, setMessageStatus);
+    }
     return (
         <Card sx={{maxWidth: 400, minWidth: 250, backgroundColor: "black", mx: 'auto'}}>
             <Modal
@@ -51,13 +57,10 @@ const VideoCard = ({user, trendingData}) => {
                 </Typography>
             </CardContent>
             <CardActions>
+                <Button size="small" onClick={(e) => addToWatchList(e)}>Add To List</Button>
                 <Button size="small"
-                        onClick={() => videoService.addToWatchList(trendingData)}
-                >Add To
-                    List</Button>
-                <Button size="small"
-                    onClick={(e) => getTrailer(e, trendingData.title || trendingData.name,
-                        trendingData.release_date || trendingData.first_air_date, setVideoID, setIsOpen, videoID)}
+                        onClick={(e) => getTrailer(e, trendingData.title || trendingData.name,
+                            trendingData.release_date || trendingData.first_air_date, setVideoID, setIsOpen, videoID)}
                 >Watch Trailer</Button>
             </CardActions>
         </Card>

@@ -7,7 +7,5 @@ axios.defaults.withCredentials = true
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />)
 
-
-// TODO: Fix context in VideoDisplay.js
 // TODO: Fix animation for removing and introducing videodisplay
 // TODO: Check if UTIL functions work properly (YT API QUOTA HIT -- RECHECK NEXT DAY)

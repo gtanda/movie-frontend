@@ -28,7 +28,6 @@ const responsive = {
 const VideoDisplay = ({videos}) => {
     const [message, setMessage] = useState(null)
     const [messageStatus, setMessageStatus] = useState(null)
-    console.log('videodis', UserWatchListContext)
     const {setUserWatchList} = useContext(UserWatchListContext)
 
     useEffect(() => {
