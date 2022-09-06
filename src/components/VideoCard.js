@@ -9,6 +9,7 @@ import videoService from '../services/videos';
 import Modal from 'react-modal';
 import CloseIcon from '@mui/icons-material/Close';
 import {customStyles} from "../utils/modalStyles";
+import styles from '../styles/ModalStyles.css';
 import {getTrailer, renderVideo} from "../utils/getTrailerHelper";
 import {messageUpdateHelper} from "../utils/messageUpdateHelper";
 
@@ -23,21 +24,23 @@ const VideoCard = ({trendingData, setMessage, setMessageStatus}) => {
     }
     return (
         <Card sx={{maxWidth: 400, minWidth: 250, backgroundColor: "black", mx: 'auto'}}>
-            <Modal
-                ariaHideApp={false}
-                isOpen={modalIsOpen}
-                onRequestClose={() => setIsOpen(false)}
-                style={customStyles}
-            >
-                <Button
-                    startIcon={<CloseIcon/>}
-                    variant="outlined"
-                    onClick={() => setIsOpen(false)}
+                <Modal
+                    closeTimeoutMS={2000}
+                    ariaHideApp={false}
+                    isOpen={modalIsOpen}
+                    onRequestClose={() => setIsOpen(false)}
+                    style={styles && customStyles}
                 >
-                    close
-                </Button>
-                <div>{videoID && renderVideo(videoID)}</div>
-            </Modal>
+                    <Button
+                        startIcon={<CloseIcon/>}
+                        variant="outlined"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        close
+                    </Button>
+                    <div>{videoID && renderVideo(videoID)}</div>
+                </Modal>
+
             <CardMedia
                 component="img"
                 image={`https://image.tmdb.org/t/p/w342/${trendingData.poster_path}`}
