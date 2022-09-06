@@ -4,22 +4,22 @@ import UserVideoCard from "./UserVideoCard";
 import {useEffect, useState, useContext} from "react";
 import videoService from "../services/videos";
 import Alert from "@mui/material/Alert";
-import {motion} from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import {UserWatchListContext} from "../contexts/UserWatchListContext";
 
 const responsive = {
     desktop: {
-        breakpoint: { max: 3000, min: 1024 },
+        breakpoint: {max: 3000, min: 1024},
         items: 5,
         slidesToSlide: 2 // optional, default to 1.
     },
     tablet: {
-        breakpoint: { max: 1024, min: 464 },
+        breakpoint: {max: 1024, min: 464},
         items: 2,
         slidesToSlide: 2 // optional, default to 1.
     },
     mobile: {
-        breakpoint: { max: 464, min: 0 },
+        breakpoint: {max: 464, min: 0},
         items: 1,
         slidesToSlide: 1 // optional, default to 1.
     }
@@ -38,11 +38,9 @@ const UserVideoDisplay = () => {
         getUserWatchList();
     }, [message, messageStatus])
 
+
     return (
-        <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ ease: 'easeIn', duration: 2 }}>
+        <>
             {message && messageStatus ? (
                 <Alert severity={messageStatus}>{message}</Alert>
             ) : null}
@@ -50,17 +48,27 @@ const UserVideoDisplay = () => {
                 {userWatchList
                     ? userWatchList.map((video) => {
                         return (
-                            <UserVideoCard
-                                key={video.id}
-                                trendingData={video}
-                                setMessage={setMessage}
-                                setMessageStatus={setMessageStatus}
-                            />
+                            <AnimatePresence>
+                                <motion.div
+                                    key={video.id}
+                                    initial={{y: '50%', opacity: 0, scale: 0.5}}
+                                    animate={{y: 0, opacity: 1, scale: 1}}
+                                    exit={{y: '50%', opacity: 0, transition: {duration: 1}}}
+                                    transition={{ease: 'easeOut', duration: 1}}
+                                >
+                                    <UserVideoCard
+                                        key={video.id}
+                                        trendingData={video}
+                                        setMessage={setMessage}
+                                        setMessageStatus={setMessageStatus}
+                                    />
+                                </motion.div>
+                            </AnimatePresence>
                         )
                     })
                     : null}
             </Carousel>
-        </motion.div>
+        </>
     )
 }
 export default UserVideoDisplay

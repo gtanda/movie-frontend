@@ -3,7 +3,7 @@ import Carousel from 'react-multi-carousel'
 import VideoCard from "./VideoCard";
 import {useContext, useEffect, useState} from "react";
 import Alert from "@mui/material/Alert";
-import {motion} from "framer-motion";
+import {motion, AnimatePresence} from "framer-motion";
 import {UserWatchListContext} from "../contexts/UserWatchListContext";
 import videoService from "../services/videos";
 
@@ -38,10 +38,7 @@ const VideoDisplay = ({videos}) => {
     }, [message, messageStatus])
 
     return (
-        <motion.div
-            initial={{opacity: 0, scale: 0.5}}
-            animate={{opacity: 1, scale: 1}}
-            transition={{ease: 'easeIn', duration: 2}}>
+        <>
             {message && messageStatus ? (
                 <Alert severity={messageStatus}>{message}</Alert>
             ) : null}
@@ -49,17 +46,24 @@ const VideoDisplay = ({videos}) => {
                 {videos
                     ? videos.map((video) => {
                         return (
-                            <VideoCard
+                            <motion.div
                                 key={video.id}
-                                trendingData={video}
-                                setMessage={setMessage}
-                                setMessageStatus={setMessageStatus}
-                            />
+                                initial={{y: '50%', opacity: 0, scale: 0.5}}
+                                animate={{y: 0, opacity: 1, scale: 1}}
+                                transition={{ease: 'easeOut', duration: 0.8}}
+                            >
+                                <VideoCard
+                                    key={video.id}
+                                    trendingData={video}
+                                    setMessage={setMessage}
+                                    setMessageStatus={setMessageStatus}
+                                />
+                            </motion.div>
                         )
                     })
                     : null}
             </Carousel>
-        </motion.div>
+        </>
     )
 }
 export default VideoDisplay
