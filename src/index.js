@@ -7,5 +7,5 @@ axios.defaults.withCredentials = true
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />)
 
-// TODO: Fix animation for removing and introducing videodisplay
-// TODO: Check if UTIL functions work properly (YT API QUOTA HIT -- RECHECK NEXT DAY)
+// TODO: Fix animation for removing movies from watchlist
+// TODO: Work on Recommendations page

@@ -44,21 +44,31 @@ const VideoDisplay = ({videos}) => {
             ) : null}
             <Carousel infinite={true} responsive={responsive}>
                 {videos
-                    ? videos.map((video) => {
+                    ? videos.map((video, i) => {
                         return (
-                            <motion.div
-                                key={video.id}
-                                initial={{y: '50%', opacity: 0, scale: 0.5}}
-                                animate={{y: 0, opacity: 1, scale: 1}}
-                                transition={{ease: 'easeOut', duration: 0.8}}
-                            >
-                                <VideoCard
-                                    key={video.id}
-                                    trendingData={video}
-                                    setMessage={setMessage}
-                                    setMessageStatus={setMessageStatus}
-                                />
-                            </motion.div>
+                            <motion.ul key={video.id}>
+                                <motion.li
+                                    variants={{
+                                        hidden: {y: -100, opacity: 0, scale: 0.5},
+                                        visible: (i) => ({
+                                            y: 0,
+                                            opacity: 1,
+                                            scale: 1,
+                                            transition: {ease: 'easeOut', delay: i * 0.1}
+                                        }),
+                                    }}
+                                    custom={i}
+                                    initial="hidden"
+                                    animate="visible"
+                                >
+                                    <VideoCard
+                                        key={video.id}
+                                        trendingData={video}
+                                        setMessage={setMessage}
+                                        setMessageStatus={setMessageStatus}
+                                    />
+                                </motion.li>
+                            </motion.ul>
                         )
                     })
                     : null}
