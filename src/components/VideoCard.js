@@ -36,7 +36,7 @@ const VideoCard = ({trendingData, setMessage, setMessageStatus}) => {
                 >
                     close
                 </Button>
-                <div>{videoID && renderVideo()}</div>
+                <div>{videoID && renderVideo(videoID)}</div>
             </Modal>
             <CardMedia
                 component="img"

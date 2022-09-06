@@ -1,14 +1,6 @@
 import videoService from "../services/videos";
 import YouTube from "react-youtube";
 
-export const getTrailer = async (e, title, releaseDate, setIsOpen, setVideoID, renderVideo, videoID) => {
-    e.preventDefault();
-    const trailerInfo = await videoService.getTrailer(title, releaseDate)
-    setIsOpen(true)
-    setVideoID(trailerInfo.id.videoId)
-    renderVideo(videoID)
-}
-
 export const renderVideo = (videoID) => {
     const opts = {
         height: '400',
@@ -27,3 +19,13 @@ export const renderVideo = (videoID) => {
         </div>
     )
 }
+
+export const getTrailer = async (e, title, releaseDate, setVideoID, setIsOpen, videoID) => {
+    e.preventDefault();
+    const trailerInfo = await videoService.getTrailer(title, releaseDate)
+    setIsOpen(true)
+    setVideoID(trailerInfo.id.videoId)
+    renderVideo(videoID)
+}
+
+
