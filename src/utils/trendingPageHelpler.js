@@ -1,5 +1,3 @@
-import tmdbService from "../services/tmdb";
-
 export const setLocalStorageBackgroundImages = (type, trendingMovies, trendingTv) => {
     switch (type) {
         case 'movie':

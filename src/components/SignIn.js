@@ -8,6 +8,7 @@ import Input from "@mui/material/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from "@mui/icons-material/Lock";
+import {inputBlock} from "../utils/inputStyles";
 
 const SignIn = () => {
     const [username, setUsername] = useState('')
@@ -41,16 +42,6 @@ const SignIn = () => {
     }
     getImagesFromStorage()
 
-    const inputBlock = {
-        backgroundColor: '#050314',
-        padding: '0.4rem',
-        margin: '0.4rem 0',
-        border: '0.1rem solid #00c6c4',
-        borderRadius: '0.2rem',
-        color: 'white',
-        width: '100%',
-        height: '2rem',
-    }
 
     return (
         <div>

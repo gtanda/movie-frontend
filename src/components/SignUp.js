@@ -9,6 +9,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import Input from '@mui/material/Input';
+import {inputBlock} from "../utils/inputStyles";
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
@@ -39,19 +40,6 @@ const SignUp = () => {
             }
         }
     }
-
-
-    const inputBlock = {
-        backgroundColor: '#050314',
-        padding: '0.4rem',
-        margin: '0.4rem 0',
-        border: '0.1rem solid #00c6c4',
-        borderRadius: '0.2rem',
-        color: 'white',
-        width: '100%',
-        height: '2rem',
-    }
-
 
     getImagesFromStorage()
     return (

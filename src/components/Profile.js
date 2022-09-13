@@ -5,6 +5,12 @@ import Alert from '@mui/material/Alert'
 import styles from '../styles/Profile.module.css'
 import {messageUpdateHelper} from "../utils/messageUpdateHelper";
 import {Input} from '@mui/material'
+import InputAdornment from "@material-ui/core/InputAdornment";
+import PersonIcon from "@mui/icons-material/Person";
+import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from '@mui/icons-material/Lock';
+import {inputBlock} from "../utils/inputStyles";
+import {motion} from "framer-motion";
 
 const Profile = () => {
     const [username, setUsername] = useState('')
@@ -105,63 +111,93 @@ const Profile = () => {
                 <Alert severity={messageStatus}>{message}</Alert>
             ) : null}
             <h3>{username ? `Welcome ${username}! ` : 'User Does not Exist'}</h3>
-            <form className={styles.formStyle} >
+            <form className={styles.formStyle}>
                 <div className={styles.inputDivs}>
                     <p>Update Username</p>
-                    <input
-                        value={usernameInput}
-                        onChange={(e) => setUsernameInput(e.target.value)}
-                        className={styles.inputBlocks}
+                    <Input
                         placeholder={'enter new username'}
-                    />
-                    <button
-                        type={'submit'}
-                        className={styles.submitStyle}
-                        onClick={(e) =>
-                            handleUserUpdate(e, username, usernameInput, 'username')
+                        value={usernameInput}
+                        sx={inputBlock}
+                        startAdornment={
+                            <InputAdornment position="start">
+                                <PersonIcon/>
+                            </InputAdornment>
                         }
+                        onChange={(e) => setUsername(e.target.value)}
+
+                    />
+                    <motion.button
+                        type="submit"
+                        onClick={(e) => handleUserUpdate(e, username, usernameInput, 'username')}
+                        className={styles.submitStyle}
+                        initial={{scale: 0.9}}
+                        whileHover={{
+                            scale: 1,
+                            transition: {duration: 0.2},
+                        }}
+                        whileTap={{scale: 0.9}}
                     >
                         Update Username
-                    </button>
+                    </motion.button>
                 </div>
                 <div className={styles.inputDivs}>
                     <p>Update Email</p>
-                    <input
-                        value={emailInput}
-                        onChange={(e) => setEmailInput(e.target.value)}
-                        type={'email'}
-                        className={styles.inputBlocks}
+                    <Input
                         placeholder={'enter new email'}
+                        value={emailInput}
+                        sx={inputBlock}
+                        startAdornment={
+                            <InputAdornment position="start">
+                                <EmailIcon />
+                            </InputAdornment>
+                        }
+                        onChange={(e) => setEmailInput(e.target.value)}
+
                     />
-                    <button
-                        type={'submit'}
-                        className={styles.submitStyle}
+                    <motion.button
+                        type="submit"
                         onClick={(e) => handleUserUpdate(e, email, emailInput, 'email')}
+                        className={styles.submitStyle}
+                        initial={{scale: 0.9}}
+                        whileHover={{
+                            scale: 1,
+                            transition: {duration: 0.2},
+                        }}
+                        whileTap={{scale: 0.9}}
                     >
                         Update Email
-                    </button>
+                    </motion.button>
                 </div>
                 <div className={styles.inputDivs}>
                     <p>Update Password</p>
-                    <input
-                        value={passwordInput}
-                        onChange={(e) => setPasswordInput(e.target.value)}
-                        type={'password'}
-                        className={styles.inputBlocks}
+                    <Input
                         placeholder={'enter new password'}
+                        type={'password'}
+                        value={passwordInput}
+                        sx={inputBlock}
+                        startAdornment={
+                            <InputAdornment position="start">
+                                <LockIcon />
+                            </InputAdornment>
+                        }
+                        onChange={(e) => setPasswordInput(e.target.value)}
+
                     />
-                    <button
-                        type={'submit'}
-                        className={styles.submitStyle}
+                    <motion.button
+                        type="submit"
                         onClick={(e) =>
                             handleUserUpdate(e, email, passwordInput, 'password')
                         }
+                        className={styles.submitStyle}
+                        initial={{scale: 0.9}}
+                        whileHover={{
+                            scale: 1,
+                            transition: {duration: 0.2},
+                        }}
+                        whileTap={{scale: 0.9}}
                     >
                         Update Password
-                    </button>
-                </div>
-                <div className={styles.inputDivs}>
-                    <Input elemenType={'string'}  defaultValue={"enter value"}/>
+                    </motion.button>
                 </div>
             </form>
         </>
