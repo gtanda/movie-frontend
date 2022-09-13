@@ -2,8 +2,12 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import sessionService from '../services/session';
 import styles from '../styles/SignIn.module.css'
-import { GiPopcorn } from 'react-icons/gi';
+import {GiPopcorn} from 'react-icons/gi';
 import {motion} from "framer-motion";
+import Input from "@mui/material/Input";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import PersonIcon from '@mui/icons-material/Person';
+import LockIcon from "@mui/icons-material/Lock";
 
 const SignIn = () => {
     const [username, setUsername] = useState('')
@@ -29,7 +33,7 @@ const SignIn = () => {
     const backgroundImages = new Set()
 
     const getImagesFromStorage = () => {
-        for (let i =0; i < 3; i++) {
+        for (let i = 0; i < 3; i++) {
             if (window.localStorage.getItem(`tv_poster_${i}`)) {
                 backgroundImages.add(window.localStorage.getItem(`tv_poster_${i}`))
             }
@@ -37,47 +41,77 @@ const SignIn = () => {
     }
     getImagesFromStorage()
 
+    const inputBlock = {
+        backgroundColor: '#050314',
+        padding: '0.4rem',
+        margin: '0.4rem 0',
+        border: '0.1rem solid #00c6c4',
+        borderRadius: '0.2rem',
+        color: 'white',
+        width: '100%',
+        height: '2rem',
+    }
+
     return (
         <div>
             {message ? <p>{message}</p> : null}
-            <div className={styles.rightSide1} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[0]})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.rightSide1} style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[0]})`,
+                backgroundRepeat: 'no-repeat'
+            }}>
             </div>
-            <div className={styles.rightSide2} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[1]})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.rightSide2} style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[1]})`,
+                backgroundRepeat: 'no-repeat'
+            }}>
             </div>
-            <div className={styles.rightSide3} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[2]})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.rightSide3} style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[2]})`,
+                backgroundRepeat: 'no-repeat'
+            }}>
             </div>
             <div className={styles.formStyle}>
                 <h3>
-                    Sign In <GiPopcorn />
+                    Sign In <GiPopcorn/>
                 </h3>
                 <form autoComplete="on">
                     <div className={styles.inputDivs}>
-                        <input
-                            placeholder="username"
-                            value={username}
-                            type="text"
+                        <Input
+                            placeholder={'username'}
+                            sx={inputBlock}
+                            startAdornment={
+                                <InputAdornment position="start">
+                                    <PersonIcon/>
+                                </InputAdornment>
+                            }
                             onChange={(e) => setUsername(e.target.value)}
-                            className={styles.inputBlocks}
+
                         />
                     </div>
                     <div className={styles.inputDivs}>
-                        <input
-                            placeholder="password"
-                            value={password}
-                            type="password"
+                        <Input
+                            placeholder={'password'}
+                            sx={inputBlock}
+                            startAdornment={
+                                <InputAdornment position="start">
+                                    <LockIcon/>
+                                </InputAdornment>
+                            }
                             onChange={(e) => setPassword(e.target.value)}
-                            className={styles.inputBlocks}
+
                         />
                     </div>
+
                     <motion.button
                         type="submit"
                         onClick={handleSignIn}
                         className={styles.submitStyle}
+                        initial={{scale: 0.9}}
                         whileHover={{
-                            scale: 1.09,
-                            transition: { duration: 1 },
+                            scale: 1,
+                            transition: {duration: 0.2},
                         }}
-                        whileTap={{ scale: 0.9 }}
+                        whileTap={{scale: 0.9}}
                     >
                         Sign In
                     </motion.button>

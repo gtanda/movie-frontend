@@ -1,8 +1,14 @@
 import styles from '../styles/SignUp.module.css';
-import { useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-import { GiPopcorn } from 'react-icons/gi';
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {GiPopcorn} from 'react-icons/gi';
 import userService from '../services/users';
+import {motion} from "framer-motion";
+import PersonIcon from '@mui/icons-material/Person';
+import InputAdornment from "@material-ui/core/InputAdornment";
+import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from '@mui/icons-material/Lock';
+import Input from '@mui/material/Input';
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
@@ -27,7 +33,7 @@ const SignUp = () => {
     const backgroundImages = new Set()
 
     const getImagesFromStorage = () => {
-        for (let i =0; i < 3; i++) {
+        for (let i = 0; i < 3; i++) {
             if (window.localStorage.getItem(`movie_poster_${i}`)) {
                 backgroundImages.add(window.localStorage.getItem(`movie_poster_${i}`))
             }
@@ -35,65 +41,104 @@ const SignUp = () => {
     }
 
 
+    const inputBlock = {
+        backgroundColor: '#050314',
+        padding: '0.4rem',
+        margin: '0.4rem 0',
+        border: '0.1rem solid #00c6c4',
+        borderRadius: '0.2rem',
+        color: 'white',
+        width: '100%',
+        height: '2rem',
+    }
+
+
     getImagesFromStorage()
     return (
         <div>
-            <div className={styles.leftSide1} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[0]})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.leftSide1} style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[0]})`,
+                backgroundRepeat: 'no-repeat'
+            }}>
             </div>
-            <div className={styles.leftSide2} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[1]})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.leftSide2} style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[1]})`,
+                backgroundRepeat: 'no-repeat'
+            }}>
             </div>
-            <div className={styles.leftSide3} style={{backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[2]})`, backgroundRepeat: 'no-repeat'}}>
+            <div className={styles.leftSide3} style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w780/${Array.from(backgroundImages)[2]})`,
+                backgroundRepeat: 'no-repeat'
+            }}>
             </div>
             <div className={styles.formStyle}>
                 <h3>
-                    Sign Up <GiPopcorn />
+                    Sign Up <GiPopcorn/>
                 </h3>
                 <form autoComplete="on">
                     <div className={styles.inputDivs}>
-                        <input
-                            placeholder="username"
-                            value={username}
-                            type="text"
-                            onChange={(e) => setUsername(e.target.value)}
-                            className={styles.inputBlocks}
-                        />
-                    </div>
-                    <div className={styles.inputDivs}>
-                        <input
-                            placeholder="email"
-                            value={email}
-                            type="email"
+                        <Input
+                            placeholder={'email'}
+                            sx={inputBlock}
+                            startAdornment={
+                                <InputAdornment position="start">
+                                    <EmailIcon />
+                                </InputAdornment>
+                            }
                             onChange={(e) => setEmail(e.target.value)}
-                            className={styles.inputBlocks}
+
                         />
                     </div>
                     <div className={styles.inputDivs}>
-                        <input
-                            placeholder="password"
-                            value={password}
-                            type="password"
+                        <Input
+                            placeholder={'username'}
+                            sx={inputBlock}
+                            startAdornment={
+                                <InputAdornment position="start">
+                                    <PersonIcon />
+                                </InputAdornment>
+                            }
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </div>
+                    <div className={styles.inputDivs}>
+                        <Input
+                            placeholder={'password'}
+                            sx={inputBlock}
+                            startAdornment={
+                                <InputAdornment position="start">
+                                    <LockIcon />
+                                </InputAdornment>
+                            }
                             onChange={(e) => setPassword(e.target.value)}
-                            className={styles.inputBlocks}
                         />
                     </div>
                     <div className={styles.inputDivs}>
-                        <input
-                            placeholder="confirm password"
-                            value={confirmPassword}
-                            type="password"
-                            onChange={(e) => {
-                                setConfirmPassword(e.target.value);
-                            }}
-                            className={styles.inputBlocks}
+                        <Input
+                            placeholder={'confirm password'}
+                            sx={inputBlock}
+                            startAdornment={
+                                <InputAdornment position="start">
+                                    <LockIcon />
+                                </InputAdornment>
+                            }
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+
                         />
                     </div>
-                    <button
+                    <motion.button
                         type="submit"
                         onClick={handleSignUp}
                         className={styles.submitStyle}
+                        initial={{scale: 0.9}}
+                        whileHover={{
+                            scale: 1,
+                            transition: {duration: 0.2},
+                        }}
+                        whileTap={{scale: 0.9}}
                     >
-                        Sign Up
-                    </button>
+                        Sign In
+                    </motion.button>
                 </form>
             </div>
         </div>

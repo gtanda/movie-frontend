@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import Alert from '@mui/material/Alert'
 import styles from '../styles/Profile.module.css'
 import {messageUpdateHelper} from "../utils/messageUpdateHelper";
+import {Input} from '@mui/material'
 
 const Profile = () => {
     const [username, setUsername] = useState('')
@@ -104,7 +105,7 @@ const Profile = () => {
                 <Alert severity={messageStatus}>{message}</Alert>
             ) : null}
             <h3>{username ? `Welcome ${username}! ` : 'User Does not Exist'}</h3>
-            <form className={styles.formStyle}>
+            <form className={styles.formStyle} >
                 <div className={styles.inputDivs}>
                     <p>Update Username</p>
                     <input
@@ -158,6 +159,9 @@ const Profile = () => {
                     >
                         Update Password
                     </button>
+                </div>
+                <div className={styles.inputDivs}>
+                    <Input elemenType={'string'}  defaultValue={"enter value"}/>
                 </div>
             </form>
         </>

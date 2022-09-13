@@ -3,7 +3,7 @@ import Carousel from 'react-multi-carousel'
 import VideoCard from "./VideoCard";
 import {useContext, useEffect, useState} from "react";
 import Alert from "@mui/material/Alert";
-import {motion, AnimatePresence} from "framer-motion";
+import {motion} from "framer-motion";
 import {UserWatchListContext} from "../contexts/UserWatchListContext";
 import videoService from "../services/videos";
 
