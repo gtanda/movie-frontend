@@ -40,7 +40,7 @@ const VideoDisplay = ({videos}) => {
     return (
         <>
             {message && messageStatus ? (
-                <Alert severity={messageStatus}>{message}</Alert>
+                <Alert variant="filled" severity={messageStatus}>{message}</Alert>
             ) : null}
             <Carousel infinite={true} responsive={responsive}>
                 {videos

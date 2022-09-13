@@ -108,7 +108,7 @@ const Profile = () => {
     return (
         <>
             {message && messageStatus ? (
-                <Alert severity={messageStatus}>{message}</Alert>
+                <Alert variant="filled" severity={messageStatus}>{message}</Alert>
             ) : null}
             <h3>{username ? `Welcome ${username}! ` : 'User Does not Exist'}</h3>
             <form className={styles.formStyle}>
@@ -123,8 +123,7 @@ const Profile = () => {
                                 <PersonIcon/>
                             </InputAdornment>
                         }
-                        onChange={(e) => setUsername(e.target.value)}
-
+                        onChange={(e) => setUsernameInput(e.target.value)}
                     />
                     <motion.button
                         type="submit"
@@ -144,11 +143,12 @@ const Profile = () => {
                     <p>Update Email</p>
                     <Input
                         placeholder={'enter new email'}
+                        type={'email'}
                         value={emailInput}
                         sx={inputBlock}
                         startAdornment={
                             <InputAdornment position="start">
-                                <EmailIcon />
+                                <EmailIcon/>
                             </InputAdornment>
                         }
                         onChange={(e) => setEmailInput(e.target.value)}
@@ -177,7 +177,7 @@ const Profile = () => {
                         sx={inputBlock}
                         startAdornment={
                             <InputAdornment position="start">
-                                <LockIcon />
+                                <LockIcon/>
                             </InputAdornment>
                         }
                         onChange={(e) => setPasswordInput(e.target.value)}
