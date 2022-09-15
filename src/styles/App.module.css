@@ -1,0 +1,40 @@
+.link {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-decoration: none;
+    color: white;
+    float: right;
+}
+
+link:visited {
+    text-decoration: none;
+    color: white;
+}
+link:focus {
+    text-decoration: none;
+    color: white;
+}
+link:hover,
+a:active {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar {
+    background-color: #050314;
+    padding: 2rem;
+}
+
+.signUpButton {
+    display: block;
+}
+
+.signUpButton:hover {
+    border-bottom: 0.2rem solid white;
+    padding-bottom: 0.2rem;
+}
+
+.iconStyle {
+    width: 5vw;
+    display: inline-block;
+}
