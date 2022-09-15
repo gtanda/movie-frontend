@@ -68,6 +68,7 @@ const SignIn = () => {
                 <form autoComplete="on">
                     <div className={styles.inputDivs}>
                         <Input
+                            id={'signInUsername'}
                             placeholder={'username'}
                             sx={inputBlock}
                             startAdornment={
@@ -81,6 +82,7 @@ const SignIn = () => {
                     </div>
                     <div className={styles.inputDivs}>
                         <Input
+                            id={'signInPassword'}
                             placeholder={'password'}
                             sx={inputBlock}
                             startAdornment={
@@ -95,6 +97,7 @@ const SignIn = () => {
 
                     <motion.button
                         type="submit"
+                        id={'signInButton'}
                         onClick={handleSignIn}
                         className={styles.submitStyle}
                         initial={{scale: 0.9}}

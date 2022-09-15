@@ -23,9 +23,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "cross-env NODE_ENV=production react-scripts start",
+    "build": "cross-env NODE_ENV=development react-scripts build",
+    "test": "cross-env NODE_ENV=test nodemon index.js",
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint:fix": "eslint --fix"
@@ -51,6 +51,7 @@
   "proxy": "http://localhost:3001",
   "devDependencies": {
     "@playwright/test": "^1.25.2",
+    "cross-env": "^7.0.3",
     "eslint": "^8.20.0",
     "eslint-plugin-react": "^7.30.1",
     "postcss-normalize": "^10.0.1"

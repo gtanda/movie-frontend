@@ -66,6 +66,7 @@ const SignUp = () => {
                 <form autoComplete="on">
                     <div className={styles.inputDivs}>
                         <Input
+                            id={'email'}
                             placeholder={'email'}
                             sx={inputBlock}
                             startAdornment={
@@ -79,6 +80,7 @@ const SignUp = () => {
                     </div>
                     <div className={styles.inputDivs}>
                         <Input
+                            id={'username'}
                             placeholder={'username'}
                             sx={inputBlock}
                             startAdornment={
@@ -91,6 +93,7 @@ const SignUp = () => {
                     </div>
                     <div className={styles.inputDivs}>
                         <Input
+                            id={'password'}
                             placeholder={'password'}
                             sx={inputBlock}
                             startAdornment={
@@ -103,6 +106,7 @@ const SignUp = () => {
                     </div>
                     <div className={styles.inputDivs}>
                         <Input
+                            id={'confirmPassword'}
                             placeholder={'confirm password'}
                             sx={inputBlock}
                             startAdornment={
@@ -115,6 +119,7 @@ const SignUp = () => {
                         />
                     </div>
                     <motion.button
+                        id={'signUpButton'}
                         type="submit"
                         onClick={handleSignUp}
                         className={styles.submitStyle}

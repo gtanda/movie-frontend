@@ -67,6 +67,7 @@ const App = () => {
               onClick={handleLogout}
               to={'/'}
               className={styles.link + ' ' + styles.signUpButton}
+              id={'userLogout'}
             >
               Logout
             </Link>
