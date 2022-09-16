@@ -35,7 +35,7 @@ const VideoDisplay = ({videos}) => {
             setUserWatchList(await videoService.getWatchList());
         }
         getUserWatchList();
-    }, [message, messageStatus])
+    }, [message, messageStatus, setUserWatchList])
 
     return (
         <>
