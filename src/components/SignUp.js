@@ -95,10 +95,7 @@ const SignUp = () => {
                         <Input
                             id={'password'}
                             placeholder={'password'}
-<<<<<<< HEAD
                             type={'password'}
-=======
->>>>>>> 906c2f19294ce28c3c5d725b8a2e844144dc3cb1
                             sx={inputBlock}
                             startAdornment={
                                 <InputAdornment position="start">
@@ -111,10 +108,7 @@ const SignUp = () => {
                     <div className={styles.inputDivs}>
                         <Input
                             id={'confirmPassword'}
-<<<<<<< HEAD
                             type={'password'}
-=======
->>>>>>> 906c2f19294ce28c3c5d725b8a2e844144dc3cb1
                             placeholder={'confirm password'}
                             sx={inputBlock}
                             startAdornment={
@@ -123,7 +117,6 @@ const SignUp = () => {
                                 </InputAdornment>
                             }
                             onChange={(e) => setConfirmPassword(e.target.value)}
-
                         />
                     </div>
                     <motion.button
@@ -138,11 +131,7 @@ const SignUp = () => {
                         }}
                         whileTap={{scale: 0.9}}
                     >
-<<<<<<< HEAD
                         Sign Up
-=======
-                        Sign In
->>>>>>> 906c2f19294ce28c3c5d725b8a2e844144dc3cb1
                     </motion.button>
                 </form>
             </div>
