@@ -6,4 +6,9 @@ const getTrending = async (type) => {
     return request.data;
 };
 
-export default {getTrending}
+const getSearch = async (query) => {
+    const request = await axios.get(`${baseUrl}/search`, {params: {query}});
+    return request.data;
+}
+
+export default {getTrending, getSearch};
