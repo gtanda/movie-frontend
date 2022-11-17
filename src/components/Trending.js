@@ -15,7 +15,6 @@ const Trending = ({user}) => {
 
     const fetchTrending = async (type) => {
         const trendingData = await tmdbService.getTrending(type)
-        console.log('tre', trendingData.results)
         if (type === 'movie') {
             setTrendingMovies(trendingData.results)
         } else {
@@ -33,7 +32,6 @@ const Trending = ({user}) => {
     }, [])
 
     useEffect(() => {
-        console.log('trendingMovies', trendingMovies.length)
         if (trendingMovies.length  === 0 && trendingTv.length === 0) {
             fetchTrending('movie', setTrendingMovies)
             fetchTrending('tv', setTrendingTv)
@@ -43,11 +41,6 @@ const Trending = ({user}) => {
             setLocalStorageBackgroundImages('tv', trendingMovies, trendingTv)
         }
     }, [trendingMovies, trendingTv])
-
-
-
-    console.log(trendingMovies)
-    console.log('userWatchList', userWatchList)
 
     return (
         <>
