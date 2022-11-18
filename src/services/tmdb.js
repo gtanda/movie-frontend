@@ -6,9 +6,16 @@ const getTrending = async (type) => {
     return request.data;
 };
 
-const getSearch = async (query) => {
+const getMoviesList = async (query) => {
     const request = await axios.get(`${baseUrl}/search`, {params: {query}});
-    return request.data;
+    return request.data.results;
 }
 
-export default {getTrending, getSearch};
+const getRecommendations = async (queryInfo) => {
+    const arr = queryInfo.split('-');
+    const id = (arr[arr.length - 1].trim());
+    const request = await axios.get(`${baseUrl}/recommendations/${id}`);
+    return request.data.results;
+}
+
+export default {getTrending, getMoviesList, getRecommendations};
